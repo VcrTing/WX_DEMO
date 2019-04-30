@@ -1,6 +1,6 @@
 //Api
 const 
-  BASE_URL = 'http://127.0.0.1:8000',
+  BASE_URL = 'http://139.180.140.50:80',
   API_NAME = '/api'
 const api = {
   OPENID: BASE_URL + '/web/wx/openId',
