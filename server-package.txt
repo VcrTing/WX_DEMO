@@ -1,5 +1,10 @@
+# Install
 [Mysql]
 version=5.6
 help=https://www.cnblogs.com/starof/p/4680083.html
 
-[]
+[]git push -u origin master
+
+# Remove
+[Mysql]
+help=https://www.cnblogs.com/wanghuaijun/p/6398240.html
