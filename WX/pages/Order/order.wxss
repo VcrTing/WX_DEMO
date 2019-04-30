@@ -1,0 +1,86 @@
+.header {
+    width: 100%;
+    padding: auto 15px;
+    border-top: 1px solid #eeeeee;
+    box-shadow: 0px 12rpx 24rpx #dddddd;
+    background: white;
+    position: fixed;
+    display: table;
+}
+.empty,
+.header {
+    height: 110rpx;
+}
+
+.header-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.title,
+.right-content {
+    display: inline;
+}
+
+.page-right-content {
+    float: right;
+}
+
+.page-right-content icon {
+    font-size: 8vw;
+}
+
+.order {
+    padding: 2rpx 0px;
+    background: white;
+    margin-top: 36rpx;
+}
+
+.order-row {
+    padding-bottom: 15rpx;
+}
+
+.order-wrapper {
+    margin: 15rpx 36rpx 15rpx 36rpx;
+}
+
+.order-header
+,.order-footer {
+    margin-bottom: -36rpx;
+}
+.order-footer {
+    
+}
+
+.order-icon {
+    font-size: 2.8em;
+}
+
+.left-content {
+    float: left;
+    width: 110rpx;
+}
+.right-content {
+    width: 568rpx;
+    text-align: left;
+    float: right;
+    overflow: hidden;
+}
+.order-content {
+    height: 108rpx;
+    overflow-y: hidden;
+}
+.order-option {
+    width: 120rpx;
+}
+.order-add-time {
+    font-size: 12px;
+    width: 130px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.no-more {
+    color: #7e7e7e;
+}

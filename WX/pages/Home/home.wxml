@@ -1,0 +1,255 @@
+<scroll-view class="def-container"
+    scroll-with-animation="true" 
+    scroll-into-view="{{ point_top }}" 
+    scroll-y="true"
+    >
+
+    <text class="ele-hide">- 工具块 -</text>
+    <view id="top"></view>
+
+    <view class="tool" style="display: {{ point_show }};">
+        <view class="tool-wrapper text-center text-white" 
+        bindtap="scrollTop" data-opt="top"
+        >
+            <view class="iconfont iconyouxiang tool-icon"></view>
+        </view>
+    </view>
+
+    <button open-type='getUserInfo' bindgetuserinfo='on_userInfo'>获取用户</button>
+
+    <text class="ele-hide">- 轮播图 -</text>
+    <swiper class="home-slider"
+    indicatoe-dots="true" autoplay="false"
+    interval="2000" duration="500"
+    >
+        <block wx:for="{{ home_slider }}" wx:key="item">
+            <swiper-item>
+            <image src="{{ item }}" class="slide-image" mode="widthFix" />
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <text class="ele-hide">- 服务 -</text>
+    <view class="row-clear">
+        <view class="service-outter">
+            <view class="item-bg">
+                <image src="{{service_bg}}" class="bg-img" />
+                <view class="bg-hui"></view>
+            </view>
+            <view class="item-wrapper">
+                <view class="item-content">
+                    <view class="def-title">
+                        <text class="text-white text-large">Our Service</text>
+                        <view class="main-bg home-sub-line"></view>
+                    </view>
+                    <view class="service">
+                        <view class="service-box">
+                            <view class="box-icon">
+                                <icon class="iconfont icondengdai service-icon"></icon>
+                            </view>
+                            <view class="box-title">
+                                Service 01
+                            </view>
+                        </view>
+                        <view class="service-box">
+                            <view class="box-icon">
+                                <icon class="iconfont icondizhi service-icon"></icon>
+                            </view>
+                            <view class="box-title">
+                                Service 02
+                            </view>
+                        </view>
+                        <view class="service-box">
+                            <view class="box-icon">
+                                <icon class="iconfont iconnongjinongzi service-icon"></icon>
+                            </view>
+                            <view class="box-title">
+                                Service 03
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <text class="ele-hide">- 产品 -</text>
+    <view class="row">
+        <view class="def-title text-center">
+            <text class="text-large">Our Product</text>
+            <view class="main-bg home-sub-line"></view>
+        </view>
+        
+        <view class="row">
+            <view class="row-wrapper">
+                <view class="product" wx:for="{{ product_list }}" wx:key="item">
+                    <view class="product-wrapper">
+                        <view class="product-img">
+                            <image src="{{ item.image }}" mode="widthFix" />
+                        </view>
+                        <view class="product-content">
+                            <view class="product-title">
+                                {{ item.name }}
+                            </view>
+                            <view class="product-description">
+                                {{ item.description }}
+                            </view>
+                            <view class="product-link text-main-deep">
+                                <view class="product-link-text">
+                                    BUY NOW
+                                </view>
+                                <view class="iconfont iconyouxiang product-link-icon"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+    <text class="ele-hide">- 关于我们 -</text>
+    <view class="row-clear def-bg">
+        <view class="row-wrapper-fullwidth ">
+            <view class="about-bg">
+                <image src="{{ about_bg }}" mode="widthFix" />
+                <view class="img-hui"></view>
+            </view>
+            <view class="about-detail">
+                <view class="def-title text-center mt-30">
+                    <text class="text-white text-large">About Us</text>
+                    <view class="main-bg home-sub-line"></view>
+                </view>
+                <view class="row">
+                    <view class="row-wrapper bg-white">
+                        <view class="about-img">
+                            <image src="{{ about_img }}" mode="widthFix" />
+        
+                        </view>
+                        <view class="row-wrapper about-content text-center">
+                            <view class="text-row text-left">
+                                Example:
+                            </view>
+                            <view class="text-row mt-15">
+                                Noble Partners is a Hong Kong-based boutique audit firm registered under the Hong Kong Professional Accountants Ordinance, founded in 2011 by a group of experienced CPAs and offers wide range of professional services.
+                            </view>
+                            <view class="empty-50"></view>
+                            <view class="about-experience text-weight">
+                                <view class="text-main">
+                                    more than
+                                </view>
+                                <view class="about-num text-main">
+                                    15
+                                </view>
+                                <view class="text-upcase">
+                                    years experience
+                                </view>
+                            </view>
+                            <view class="empty-30"></view>
+                            <button class="btn btn-main text-upcase text-weight">
+                                read more
+                            </button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="empty-70 def-bg"></view>
+        </view>
+    </view>
+
+    <text class="ele-hide">- 数据展示 -</text>
+    <view class="row">
+        <view class="row-wrapper">
+            <view class="num-show text-center">
+                <view class="about-num-group text-weight">
+                    <view class="about-num-two  text-main">
+                        15
+                    </view>
+                    <view class="text-upcase">
+                        years experience
+                    </view>
+                </view>
+                <view class="about-num-group text-weight">
+                    <view class="about-num-two  text-main">
+                        20
+                    </view>
+                    <view class="text-upcase">
+                        Skilled technicians
+                    </view>
+                </view>
+                <view class="about-num-group text-weight">
+                    <view class="about-num-two  text-main">
+                        200
+                    </view>
+                    <view class="text-upcase">
+                        Happy clients
+                    </view>
+                </view>
+                <view class="about-num-group text-weight">
+                    <view class="about-num-two text-main">
+                        230
+                    </view>
+                    <view class="text-upcase">
+                        Finished projects
+                    </view>
+                </view>
+            </view>
+            <view class="empty-30"></view>
+        </view>
+    </view>
+
+    <text class="ele-hide">- 电话 -</text>
+    <view class="row">
+        <view class="row-wrapper-fullwidth bg-main">
+            <view class="call-action">
+                <view class="def-header flex">
+                    <view class="def-title">
+                        Any Question Call To Us
+                    </view>
+                    <view class="def-sub text-center">
+                        <view class="def-p">
+                            <icon class="iconfont icondianhua"></icon>: 0796-45536
+                        </view>
+                    </view>
+                    <button class="phone-btn" hover-class="phone-btn-hover">
+                        Call Now
+                    </button>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <text class="ele-hide">- 地图 -</text>
+    <view class="row">
+        <view class="row-wrapper">
+            <view class="def-header flex">
+                <view class="def-title text-center">
+                    You can also use this Map
+                </view>
+                <view class="def-sub text-center">
+                    <view class="def-p">
+                        Here's some text to convey the message. There's no limit to the number of words.
+                    </view>
+                </view>
+            </view>
+            <view class="empty-30"></view>
+        </view>
+    </view>
+    <view class="row-clear">
+        <view class="row-wrapper-fullwidth">
+            <map
+            id="map"
+            longitude="113.324520"
+            latitude="23.099994"
+            scale="14"
+            markers="{{ markers }}"
+            bindmarkertap="markertap"
+            bindregionchange="regionchange"
+            show-location
+            style="width: 750rpx; height: 667rpx;"
+            ></map>
+        </view>
+    </view>
+
+    <text class="ele-hide">- 足部 -</text>
+    <footer></footer>
+</scroll-view> 

@@ -1,0 +1,19 @@
+.row {
+    width: 750rpx;
+    background: rgb(0, 168, 243);
+}
+
+.row-wrapper {
+    margin: 0px 15px;
+}
+
+.footer-copyright {
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    height: 0px;
+    overflow: hidden;
+}
+.row:hover {
+    background: #3f9df3;
+}

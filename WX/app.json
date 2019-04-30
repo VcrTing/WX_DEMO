@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/Order/add_order/add_order",
+    "pages/Order/order",
+    "pages/Order/add_success/add_success",
+    "pages/Home/home",
+    "pages/User/user",
+    "pages/Compoents/fooetr/footer"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/Home/home",
+        "iconPath": "lib/icons/home - def.png",
+        "selectedIconPath": "lib/icons/home - hover.png",
+        "text": "Home"
+      },
+      {
+        "pagePath": "pages/Order/order",
+        "iconPath": "lib/icons/order - def.png",
+        "selectedIconPath": "lib/icons/order - hover.png",
+        "text": "Order"
+      }
+    ]
+  },
+  "component": true,
+  "usingComponents": {
+    "footer": "pages/Compoents/fooetr/footer"
+  },
+  "version": "1.0",
+  "author": "dan@manfulls.com",
+  "lastEdit": "2019-4-12"
+}

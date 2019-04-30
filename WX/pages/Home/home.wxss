@@ -1,0 +1,198 @@
+
+.home-slider {
+    width: 100%;
+    height: 390rpx;
+}
+.slide-image {
+    width: 100%;
+}
+
+.home-item {
+    
+}
+
+.home-sub-line {
+    height: 6rpx;
+    background: grey;
+    width: 144rpx;
+    margin: auto;
+    z-index: 1200;
+    margin-top: 6rpx;
+}
+
+
+.item-bg {
+    width: 750rpx;
+    height: 1125rpx;
+    left: 0;
+    top: 0;
+    position: relative;
+}
+
+.service-outter {
+    position: relative;
+}
+
+.bg-hui,
+.bg-img {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+.bg-hui {
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+
+.main-bg, 
+.bg-main {
+    background: rgb(0, 168, 243);
+}
+
+.item-wrapper {
+    text-align: center;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.item-content,
+.item-content view {
+    z-index: 1001;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 72rpx 36rpx;
+}
+
+.service {
+    width: 100%;
+}
+
+.service-box {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.72);
+    height: auto;
+    margin-top: 58rpx;
+    padding-bottom: 15rpx;
+}
+
+
+.service-icon {
+    font-size: 180rpx;
+}
+
+.box-title {
+    margin-top: -15rpx;
+}
+
+.product {
+    margin-bottom: 120rpx;
+}
+
+.product view {
+    width: 100%;
+}
+.product image {
+    width: 100%;
+}
+.product-img {
+    padding: 0;
+    margin: 0;
+}
+
+.product-title,
+.product-description,
+.product-link {
+    font-size: 4vw;
+}
+
+.product-title {
+    font-weight: 700;
+    line-height: 60rpx;
+    font-size: 5vw;
+    padding: 24rpx 24rpx 0rpx 0px;
+}
+.product-description {
+    margin-top: -9rpx;
+}
+.product-link {
+    font-weight: 700;
+    line-height: 1.3;
+    width: 100%;
+    position: relative;
+    padding: 18rpx 6rpx 18rpx 0px;
+}
+.product-link-text,
+.product-link-icon  {
+    position: absolute;
+    font-weight: 600;
+}
+
+.product-link-icon {
+    left: 168rpx;
+}
+
+
+.about-outter {
+    display: block;
+    width: 100%;
+}
+
+.about-bg {
+    width: 100%;
+    height: 480rpx;
+    overflow: hidden;
+}
+.about-bg image {
+    width: 100%;
+    margin-top: -0rpx;
+    z-index: 997;
+}
+
+.about-detail {
+    margin-top: -480rpx;
+    z-index: 1002;
+}
+.about-detail view {
+    z-index: 9999;
+}
+
+.about-img,
+.about-img image {
+    width: 100%;
+}
+
+.about-content {
+    padding: 168rpx 0px;
+}
+
+.about-experience {
+    font-size: 7vw;
+}
+
+.about-num-group {
+    font-size: 7vw;
+}
+
+.about-num  {
+    font-size: 20vw;
+    margin-top: -15rpx;
+    margin-bottom: -15rpx;
+}
+
+.about-num-two  {
+    font-size: 15vw;
+    margin-top: 30rpx;
+    margin-bottom: -15rpx;
+}

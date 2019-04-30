@@ -1,0 +1,99 @@
+<view class="def-container">
+    <view class="loading" wx:if="{{ is_loading }}">
+        <view class="loading-wrapper">
+            <image src="{{ loading_img }}" mode="widthFix"></image>
+        </view>
+    </view>
+    <view class="header">
+        <view class="row-clear header-wrapper">
+            <view class="row-wrapper">
+                <view class="title">
+                    <text>Order Record</text>
+                </view>
+                <view class="page-right-content">
+                    <navigator url="/pages/Order/add_order/add_order">
+                        <icon class="iconfont iconadd text-main"></icon>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="empty-30 def-bg"></view>
+    <view class="row-clear order-row def-bg">
+        <view class="row-wrapper-fullwidth mt-15">
+            <view wx:for="{{ order_list }}" wx:key="id">
+                <view class="order" id="order_{{ item.id }}" wx:if="{{ item.status == true }}">
+                    <view class="order-wrapper">
+                        <view class="order-header text-tiny pd-15 mt-half">
+                            <view class="d-inline text-bolder">编号：</view> 
+                            <view class="d-inline text-main text-bolder">{{ item.order_number }}</view>
+
+                            <view class="order-status float-right d-inline text-mini mt-half">
+                                <view class="d-inline text-grey">状态：</view> 
+                                <text wx:if="{{ item.order_status == 0 }}" 
+                                    class="text-red d-inline"
+                                    > 已过期 </text>
+                                <text wx:if="{{ item.order_status == 1 }}" 
+                                    class="text-gold d-inline"
+                                    > 审核中 </text>
+                                <text wx:if="{{ item.order_status == 2 }}" 
+                                    class="text-orange d-inline"
+                                    > 待执行 </text>
+                                <text wx:if="{{ item.order_status == 3 }}" 
+                                    class="text-green d-inline"
+                                    > 已完成 </text>
+                            </view>
+                            
+                        </view> 
+                        <view class="line"></view>
+                        <view class="order-content text-mini clearfix">
+                            <view class="left-content">
+                                <view class="">
+                                    <icon class="iconfont iconguanbi order-icon text-red"
+                                        wx:if="{{ item.order_status == 0 }}"></icon>
+                                    <icon class="iconfont iconshenhe order-icon text-gold"
+                                        wx:if="{{ item.order_status == 1 }}"></icon>
+                                    <icon class="iconfont icondaishouhuo order-icon text-orange"
+                                        wx:if="{{ item.order_status == 2 }}"></icon>
+                                    <icon class="iconfont iconyiwancheng order-icon text-green"
+                                        wx:if="{{ item.order_status == 3 }}"></icon>
+                                </view>
+                            </view>
+                            <view class="right-content">
+                                <view class="order-title">
+                                    预约时间：
+                                    <view class="d-inline">
+                                        {{ item.order_date }} {{ item.order_time }}
+                                    </view>
+                                </view>
+                                <view class="order-content text-tiny">
+                                    详情：
+                                    <view class="d-inline text-grey">
+                                        {{ item.order_content }}
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="order-footer text-mini pd-15 clearfix mt-half">
+                            <view class="left-content text-lightgrey text-mini order-add-time">
+                                创建时间：{{ item.add_time }}
+                            </view>
+                            <view class="right-content order-option">
+                                <view class="a text-12 float-right text-main" bindtap="del_order" data-id="{{ item.id }}">
+                                    Trash
+                                </view>
+                            </view>
+                        </view> 
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="row-clear">
+        <view class="row-wrapper text-center">
+            <view class="no-more">
+                <text>...</text>
+            </view>
+        </view>
+    </view>
+</view>

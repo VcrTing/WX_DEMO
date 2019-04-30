@@ -1,0 +1,33 @@
+<!--pages/Order/add_success/add_success.wxml.wxml-->
+<view class="def-container def-bg min-h-full">
+  <view class="row">
+    <view class="row-wrapper text-center bg-white">
+      <view class="empty-30"></view>
+      <icon class="iconfont iconyiwancheng success-icon"></icon>
+      <view class="wrapper-in mt-15">
+        <view class="def-header flex text-center">
+            <text class="def-title text-dark">The reservation has been made. Your order number is 
+            <text class="text-money d-display text-massive mt-15">{{ order_number }}</text></text>
+            <text class="def-sub text-light pd-15">
+              You can see your order number again on the order page
+            </text>
+        </view>
+        <view class="empty-30"></view>
+        <button class="btn btn-main p" hover-class="phone-btn-hover" bindtap="go_order">
+          Understand
+        </button>
+        <view class="empty-70"></view>
+      </view>
+    </view>
+  </view>
+  <view class="row">
+    <view class="row-wrapper">
+      <view class="empty-30"></view>
+    </view>
+  </view>
+  <view class="row">
+    <view class="row-wrapper">
+      <view class="empty-30"></view>
+    </view>
+  </view>
+</view>

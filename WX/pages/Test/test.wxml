@@ -1,0 +1,20 @@
+<view class='row'>
+<view class='row-wrapper'>
+
+  <view class="section">
+    username:<input type='text' class='bd-main' name='username' bindinput='form_username'/>
+  </view>
+  <view class="section">
+    password:<input type='text' class='bd-main' name='password' bindinput='form_password' password='true'/>
+  </view>
+  <view class='btn mt-15 d-block' bindtap='register'>
+    register
+  </view>
+  <view class='btn mt-15 d-block' bindtap='login'>
+    login
+  </view>
+  <view class='btn mt-15 d-block' bindtap='all_user'>
+    all_user
+  </view>
+</view>
+</view>
