@@ -1,10 +1,6 @@
 # Install
-[Mysql]
-version=5.6
-help=https://www.cnblogs.com/starof/p/4680083.html
 
-[]git push -u origin master
+[Python3.7]
+url=https://www.cnblogs.com/contiune/p/10575113.html
 
-# Remove
-[Mysql]
-help=https://www.cnblogs.com/wanghuaijun/p/6398240.html
+[Git]
