@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 from django.http import JsonResponse
+from django_filters.rest_framework.backends import DjangoFilterBackend
 
 from rest_framework import mixins, viewsets, views, status
 from rest_framework.response import Response
@@ -21,7 +22,12 @@ class HomeSliderViewSet(viewsets.ModelViewSet):
     """
     queryset = models.HomeSlider.objects.all()
     serializer_class = serializers.HomeSliderSerializer
+    filter_backends = (DjangoFilterBackend, )
+    filter_fields = ('status', )
+    ordering_fields = ('id', )
 
+
+# 获取用户 OpenId
 class OpenIdView(View):
     def get(self, request):
         code = request.GET.get('code', '')

@@ -25,6 +25,7 @@ from . import settings
 # import Extra.xadmin as xadmin
 from Appis.member import views as MemberView
 from Appis.order import views as OrderView
+from Appis.posts import views as PostsView
 from Appis.web import views as WebView
 
 router = routers.DefaultRouter()
@@ -36,6 +37,9 @@ router.register('member_msg', MemberView.MemberMsgViewSet)
 router.register('order', OrderView.OrderViewSet)
 router.register('order_belong', OrderView.OrderBelongViewSet)
 
+# Posts
+router.register('blog', PostsView.BlogViewSet)
+
 # Web
 router.register('home_slider', WebView.HomeSliderViewSet)
 
@@ -44,9 +48,10 @@ urlpatterns = [
     re_path(r'^media/(?P<path>.*)$',  serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_DIR}),
     # path('xadmin/', xadmin.site.urls),
-    path('docs/', include_docs_urls(title='微信小程序')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
     path('api/', include(router.urls)),
+    path('docs/', include_docs_urls(title='微信小程序')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     
     path('web/', include('Appis.web.urls')),

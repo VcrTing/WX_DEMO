@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        {{ blog.title }}
+    </title>
+    <meta name="name" content="Blog Page"/>
+    <meta property="og:type" content="website" />
+    <meta name="description" content="The ManFulls's WebSite"/>
+    <link rel="SHORTCUT ICON" href="https://camo.githubusercontent.com/c10a277645ff4d15cc689aefecfa72c37384e0ed/68747470733a2f2f74696d6773612e62616964752e636f6d2f74696d673f696d616765267175616c6974793d38302673697a653d62393939395f3130303030267365633d313535363632323437363938372664693d653638333062303862643135613535386236366263373636333732373332306126696d67747970653d30267372633d687474702533412532462532466862696d672e62302e7570616979756e2e636f6d2532463730316331633835373531633663663339636332653666646161346231663562363736336639353034613764662d51484a7064315f6677363538" type="image/x-icon"/>
+</head>
+<style>
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+* {
+    box-sizing: border-box;
+}
+.row {
+    margin-top: 9.6%;
+}
+.row-clear {
+    margin-top: 0;
+}
+.row-wrapper-fullwidth {
+    min-height: 100vh;
+    background: #f7f7f7;
+}
+.row-wrapper {
+    margin: 0vw 4.8%;
+}
+.img {
+    width: 100%;
+}
+.blog-img {
+    width: 100%;
+}
+.text-center {
+    text-align: center
+}
+.blog-content {
+    margin-bottom: 0vh;
+}
+.blog-empty {
+    width: 100%;
+    height: 12vh;
+}
+.blog-time {
+    font-size: 12px;
+    padding: 3vw 4.8%;
+    background: white;
+    color: #aeaeae;
+}
+</style>
+<body>
+    <div class="def-container">
+        <div class="row-clear">
+            <div class="row-wrapper-fullwidth">
+                <div class="blog-img">
+                    <img src="{{ MEDIA_URL }}{{ blog.img }}" class="img"/>
+                </div>
+                <div class="row">
+                    <div class="row-wrapper">
+                        <h2 class="text-center">{{ blog.title }}</h2>
+                        <div class="blog-content">
+                            {{ blog.content|safe }}
+                        </div>
+                        <div class="blog-empty">
+                        </div>
+                    </div>
+                    <h2 class="blog-time text-center">
+                        Published in：{{ blog.add_time }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
