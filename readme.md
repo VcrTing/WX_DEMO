@@ -6,5 +6,5 @@
 
 ### [微信小程序演示项目](http://nodejs.up5d.com/)
 
-version = 1.0.1
+version = 0.2.0
 <p align='right'>💗</p>
