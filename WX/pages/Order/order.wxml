@@ -18,13 +18,14 @@
             </view>
         </view>
     </view>
-    <view class="empty-30 def-bg"></view>
+    <view class="empty-50 def-bg"></view>
     <view class="row-clear order-row def-bg">
         <view class="row-wrapper-fullwidth mt-15">
             <view wx:for="{{ order_list }}" wx:key="id">
                 <view class="order" id="order_{{ item.id }}" wx:if="{{ item.status == true }}">
                     <view class="order-wrapper">
                         <view class="order-header text-tiny pd-15 mt-half">
+                            <view class="mt-half"></view>
                             <view class="d-inline text-bolder">编号：</view> 
                             <view class="d-inline text-main text-bolder">{{ item.order_number }}</view>
 
@@ -60,7 +61,7 @@
                                 </view>
                             </view>
                             <view class="right-content">
-                                <view class="order-title">
+                                <view class="order-title text-bolder">
                                     预约时间：
                                     <view class="d-inline">
                                         {{ item.order_date }} {{ item.order_time }}

@@ -15,8 +15,6 @@
         </view>
     </view>
 
-    <button open-type='getUserInfo' bindgetuserinfo='on_userInfo'>获取用户</button>
-
     <text class="ele-hide">- 轮播图 -</text>
     <swiper class="home-slider"
     indicatoe-dots="true" autoplay="false"
@@ -29,42 +27,36 @@
         </block>
     </swiper>
 
-    <text class="ele-hide">- 服务 -</text>
+    <text class="ele-hide">- 博客 -</text>
     <view class="row-clear">
-        <view class="service-outter">
-            <view class="item-bg">
-                <image src="{{service_bg}}" class="bg-img" />
-                <view class="bg-hui"></view>
-            </view>
-            <view class="item-wrapper">
-                <view class="item-content">
+        <view class="row-wrapper-fullwidth">
+            <view class="ps-relative blog-dom text-center">
+                <view class="ps-absolute bg-img">
+                    <image src="{{service_bg}}" class="blog-dom" />
+                </view>
+                <view class="ps-absolute bg-hui">
+                    
+                </view>
+                <view class="ps-absolute bg-content">
+                    <view class="empty-30"></view>
                     <view class="def-title">
-                        <text class="text-white text-large">Our Service</text>
+                        <text class="text-white text-large">Our Activities</text>
                         <view class="main-bg home-sub-line"></view>
                     </view>
-                    <view class="service">
-                        <view class="service-box">
-                            <view class="box-icon">
-                                <icon class="iconfont icondengdai service-icon"></icon>
-                            </view>
-                            <view class="box-title">
-                                Service 01
-                            </view>
-                        </view>
-                        <view class="service-box">
-                            <view class="box-icon">
-                                <icon class="iconfont icondizhi service-icon"></icon>
-                            </view>
-                            <view class="box-title">
-                                Service 02
-                            </view>
-                        </view>
-                        <view class="service-box">
-                            <view class="box-icon">
-                                <icon class="iconfont iconnongjinongzi service-icon"></icon>
-                            </view>
-                            <view class="box-title">
-                                Service 03
+                    <view class="row">
+                        <view class="row-wrapper">
+                            <view class="activity ps-relative def-bg" wx:for="{{ blog }}" wx:key="item">
+                                <view class="activity-wrapper ps-relative" bindtap="goActivity" data-id="{{ item.id }}">
+                                    <view class="activity-img ps-absolute">
+                                        <view style="background: url('{{ item.img }}') center center;background-size: cover;">
+                                        </view>
+                                    </view>
+                                    <view class="activity-title ps-absolute clearfix">
+                                        <view class="activity-title-wrapper text-rich">
+                                            <view>{{ item.title }}</view>
+                                        </view>
+                                    </view>
+                                </view>
                             </view>
                         </view>
                     </view>

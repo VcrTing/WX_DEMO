@@ -8,7 +8,7 @@ Page({
     page_bg: '/lib/imgs/new/page - 1.jpg',
 
     index: 0,
-    array: ['Service 01', 'Service 02', 'Service 03'],
+    array: ['Product 01', 'Product 02', 'Product 03'],
 
     now_date: '2019-5-7',
     now_time: '09:23',
@@ -19,7 +19,7 @@ Page({
     form_name: '',
     form_emial: '',
     form_gender: 'female',
-    form_service: 'Service 01',
+    form_service: 'Product 01',
     submit_flage: false,
 
     markers: [{
@@ -212,6 +212,15 @@ Page({
           })
           /*
           */
+        },
+        fail: (res) => {
+          wx.showModal({
+            title: 'Error',
+            content: 'Sorry, server error and unable to log this order.',
+            success: function (sm) {
+
+            }
+          })
         }
       })
     }
@@ -242,7 +251,6 @@ Page({
   _valide_email() {
     const email = this.data.form_email;
     const char = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
-    console.log(email)
     if (!char.test(email)) {
       return 'The email address you entered is not in the correct format.'
     }

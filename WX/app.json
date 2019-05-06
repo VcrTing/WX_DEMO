@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/Home/home",
     "pages/Order/add_order/add_order",
     "pages/Order/order",
     "pages/Order/add_success/add_success",
-    "pages/Home/home",
     "pages/User/user",
+    "pages/Posts/posts",
     "pages/Compoents/fooetr/footer"
   ],
   "window": {
@@ -29,11 +30,7 @@
       }
     ]
   },
-  "component": true,
   "usingComponents": {
     "footer": "pages/Compoents/fooetr/footer"
-  },
-  "version": "1.0",
-  "author": "dan@manfulls.com",
-  "lastEdit": "2019-4-12"
+  }
 }

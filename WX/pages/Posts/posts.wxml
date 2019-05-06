@@ -1,0 +1,8 @@
+<view class="def-container">
+    <view class="flex">
+        <view class="empty-70"></view>
+        <view class="empty-30"></view>
+        <image src="/lib/imgs/new/loading.gif" mode="widthFix"/>
+        <web-view src="{{ blog_url }}"></web-view>
+    </view>
+</view>

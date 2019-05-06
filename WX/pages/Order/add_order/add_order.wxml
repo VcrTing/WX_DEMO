@@ -55,7 +55,7 @@
                             </view>
                         </view>
                         <view class="form-group">
-                            <text>Service: </text>
+                            <text>Product: </text>
                             <view class="form-ele">
                                 <picker 
                                     value="{{ index }}" 

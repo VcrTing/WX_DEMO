@@ -67,7 +67,7 @@
     overflow: hidden;
 }
 .order-content {
-    height: 108rpx;
+    height: 68rpx;
     overflow-y: hidden;
 }
 .order-option {

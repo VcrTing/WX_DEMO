@@ -31,6 +31,7 @@ view {
   background: white;
 }
 
+.main-bg, 
 .bg-main {
   background: rgb(0, 168, 243);
 }
@@ -66,6 +67,9 @@ view {
   color: gold;
 }
 
+.text-rich {
+  color: rgb(0, 83, 121);
+}
 
 .text-light {
   color: #7e7e7e;
@@ -144,7 +148,7 @@ view {
 }
 
 .ml-15 {
-  margin-left: 15px;
+  margin-left: 36rpx;
 }
 
 .mt-30 {
@@ -160,6 +164,9 @@ view {
 
 .mt-15 {
   margin-top: 36rpx;
+}
+.mb-15 {
+  margin-bottom: 36rpx;
 }
 
 .pd-15 {
@@ -252,6 +259,12 @@ view {
   display: inline;
 }
 
+.ps-relative {
+  position: relative;
+}
+.ps-absolute {
+  position: absolute;
+}
 .float-right {
   float: right;
 }

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import *
+from Appis.web.views import *
 
 from Appis.posts.views import BlogView
 

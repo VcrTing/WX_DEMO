@@ -82,6 +82,14 @@ Page({
               method: 'DELETE',
               success: (res) => {
                 self._del_order(id)
+              },
+              fail: (res) => {
+                wx.showToast({
+                  title: 'Server Error',
+                  icon: 'none',
+                  duration: 2000,
+                  mask: true
+                })
               }
             })
           } else if (sm.cancel) {
@@ -115,6 +123,7 @@ Page({
       setTimeout(() => {
         const memberId = app.globalData.memberId
         const url = `${app.globalData.api.ORDER}?member=${memberId}&status=true`
+  
         wx.request({
           url: url,
           method: 'GET',
@@ -124,6 +133,15 @@ Page({
                 order_list: res.data
               })
             }
+          },
+          fail: (res) => {
+            wx.showModal({
+              title: 'Error',
+              content: 'Sorry, the inquiry order is wrong.',
+              success: function (sm) {
+
+              }
+            })
           },
           complete: (res) => {
             setTimeout(() => {
