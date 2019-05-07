@@ -120,10 +120,10 @@
                         </view>
                         <view class="def-sub text-center">
                             <view class="def-p">
-                                <icon class="iconfont icondianhua"></icon>: 0796-45536
+                                <icon class="iconfont icondianhua"></icon>: {{ contact_us.tel }}
                             </view>
                         </view>
-                        <button class="phone-btn p" hover-class="phone-btn-hover">
+                        <button class="phone-btn p" hover-class="phone-btn-hover" bindtap="callPhone">
                             Call Now
                         </button>
                     </view>

@@ -30,6 +30,12 @@ Page({
       width: 50,
       height: 50
     }],
+
+    contact_us: {
+      tel: '0796-45536',
+      latitude: 23.099994,
+      longitude: 113.324520
+    }
   },
 
   /**
@@ -177,52 +183,54 @@ Page({
       'member': app.globalData.memberId
     }
     if (self.data.submit_flage) {
-      // 订单生成
-      wx.request({
-        url: app.globalData.api.ORDER,
-        method: 'POST',
-        data: order_data,
-        success: (res) => {
-          const status = res.data.status
-          const order = res.data
-          // 用户信息创建
-          wx.request({
-            url: app.globalData.api.MEMBER_MSG_CREATE,
-            method: 'POST',
-            data: member_data,
-            success: (res) => {
-              const status = res.data.status
-              const member_msg = res.data.res
-              const order_belong_data = {
-                'member_msg': member_msg.id,
-                'order': order.id
-              }
-              // 订单所属创建
-              wx.request({
-                url: app.globalData.api.ORDER_BELONG,
-                method: 'POST',
-                data: order_belong_data,
-                success: (res) => {
-                  wx.redirectTo({
-                    url: `/pages/Order/add_success/add_success?order_number=${order.order_number}`,
-                  })
-                }
-              })
-            }
-          })
-          /*
-          */
-        },
-        fail: (res) => {
-          wx.showModal({
-            title: 'Error',
-            content: 'Sorry, server error and unable to log this order.',
-            success: function (sm) {
+      try {
 
-            }
-          })
-        }
-      })
+        // 订单生成
+        wx.request({
+          url: app.globalData.api.ORDER,
+          method: 'POST',
+          data: order_data,
+          success: (res) => {
+            const status = res.data.status
+            const order = res.data
+
+            // 用户信息创建
+            wx.request({
+              url: app.globalData.api.MEMBER_MSG_CREATE,
+              method: 'POST',
+              data: member_data,
+              success: (res) => {
+                const status = res.data.status
+                const member_msg = res.data.res
+                const order_belong_data = {
+                  'member_msg': member_msg.id,
+                  'order': order.id
+                }
+
+                // 订单所属创建
+                wx.request({
+                  url: app.globalData.api.ORDER_BELONG,
+                  method: 'POST',
+                  data: order_belong_data,
+                  success: (res) => {
+                    wx.redirectTo({
+                      url: `/pages/Order/add_success/add_success?order_number=${order.order_number}`,
+                    })
+                  }
+                })
+              }
+            })
+          },
+          fail: (res) => {
+            wx.showModal({
+              title: 'Error',
+              content: 'Sorry, server error and unable to log this order.'
+            })
+          }
+        })
+      } catch(err) {
+        console.log('Submit Order Fail')
+      }
     }
   },
 
@@ -271,9 +279,20 @@ Page({
     return true
   },
 
-  // 地图
+  /**
+   * 地图
+   */
   regionchange(e) {
     console.log(e.type)
+  },
+
+  /**
+   * 打电话
+   */
+  callPhone: function(e) {
+    wx.makePhoneCall({
+      phoneNumber: this.data.contact_us.tel,
+    })
   },
 
 })

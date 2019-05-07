@@ -9,7 +9,6 @@
 
 .home-sub-line {
     height: 6rpx;
-    background: grey;
     width: 144rpx;
     margin: auto;
     z-index: 1200;

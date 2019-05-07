@@ -77,21 +77,25 @@ Page({
         content: '确定要删除吗？',
         success: function (sm) {
           if (sm.confirm) {
-            wx.request({
-              url: `${app.globalData.api.ORDER}${id}/`,
-              method: 'DELETE',
-              success: (res) => {
-                self._del_order(id)
-              },
-              fail: (res) => {
-                wx.showToast({
-                  title: 'Server Error',
-                  icon: 'none',
-                  duration: 2000,
-                  mask: true
-                })
-              }
-            })
+            try {
+              wx.request({
+                url: `${app.globalData.api.ORDER}${id}/`,
+                method: 'DELETE',
+                success: (res) => {
+                  self._del_order(id)
+                },
+                fail: (res) => {
+                  wx.showToast({
+                    title: 'Server Error',
+                    icon: 'none',
+                    duration: 2000,
+                    mask: true
+                  })
+                }
+              })
+            } catch(err) {
+              console.log('Delete Fail')
+            }
           } else if (sm.cancel) {
             console.log('用户点击取消')
           }
@@ -124,34 +128,61 @@ Page({
         const memberId = app.globalData.memberId
         const url = `${app.globalData.api.ORDER}?member=${memberId}&status=true`
   
-        wx.request({
-          url: url,
-          method: 'GET',
-          success: (res) => {
-            if (res.data) {
-              this.setData({
-                order_list: res.data
-              })
-            }
-          },
-          fail: (res) => {
-            wx.showModal({
-              title: 'Error',
-              content: 'Sorry, the inquiry order is wrong.',
-              success: function (sm) {
-
+        try {
+          wx.request({
+            url: url,
+            method: 'GET',
+            success: (res) => {
+              if (res.data.length > 0) {
+                this.setData({
+                  order_list: res.data
+                })
+              } else {
+                wx.showToast({
+                  title: 'You dont have an order yet',
+                  icon: 'none',
+                  duration: 5000,
+                  mask: true
+                })
               }
-            })
-          },
-          complete: (res) => {
-            setTimeout(() => {
-              this.setData({
-                is_loading: false
+            },
+            fail: (res) => {
+              wx.showModal({
+                title: 'Error',
+                content: 'Sorry, the inquiry order is wrong.',
+                success: function (sm) {
+
+                }
               })
-            }, 618)
-          }
-        })
+            },
+            complete: (res) => {
+              setTimeout(() => {
+                this.setData({
+                  is_loading: false
+                })
+              }, 618)
+            }
+          })
+        } catch(err) {
+          console.log('Loading Order Fail')
+        }
       }, 1382)
+    },
+    /**
+     * 重新加载
+     */
+    reload: function(e) {
+      wx.switchTab({
+        url: "/pages/Order/order",
+        success: (res) => {
+          wx.showToast({
+            title: 'Reload Success',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        }
+      })
     }
 })
 

@@ -50,7 +50,7 @@ class MemberMsg(models.Model):
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
     class Meta:
-        verbose_name = "微信用户资料"
+        verbose_name = "微信用户资料(服务于订单)"
         verbose_name_plural = verbose_name
 
     def __str__(self):

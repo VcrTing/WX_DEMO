@@ -32,7 +32,7 @@
         <view class="row-wrapper-fullwidth">
             <view class="ps-relative blog-dom text-center">
                 <view class="ps-absolute bg-img">
-                    <image src="{{service_bg}}" class="blog-dom" />
+                    <image src="{{ service_bg }}" class="blog-dom" />
                 </view>
                 <view class="ps-absolute bg-hui">
                     
@@ -199,10 +199,10 @@
                     </view>
                     <view class="def-sub text-center">
                         <view class="def-p">
-                            <icon class="iconfont icondianhua"></icon>: 0796-45536
+                            <icon class="iconfont icondianhua"></icon>: {{ contact_us.tel }}
                         </view>
                     </view>
-                    <button class="phone-btn" hover-class="phone-btn-hover">
+                    <button class="phone-btn" hover-class="phone-btn-hover" bindtap="callPhone">
                         Call Now
                     </button>
                 </view>
@@ -236,8 +236,9 @@
             markers="{{ markers }}"
             bindmarkertap="markertap"
             bindregionchange="regionchange"
-            show-location
+            show-location="true"
             style="width: 750rpx; height: 667rpx;"
+            show-compass="true" 
             ></map>
         </view>
     </view>

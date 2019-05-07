@@ -32,5 +32,7 @@
   },
   "usingComponents": {
     "footer": "pages/Compoents/fooetr/footer"
-  }
+  },
+  "sitemapLocation": "sitemap.json",
+  "debug": false
 }

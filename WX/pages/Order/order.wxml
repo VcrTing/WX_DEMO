@@ -93,7 +93,7 @@
     <view class="row-clear">
         <view class="row-wrapper text-center">
             <view class="no-more">
-                <text>...</text>
+                <text bindtap="reload">...</text>
             </view>
         </view>
     </view>

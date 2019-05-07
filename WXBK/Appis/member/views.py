@@ -36,10 +36,8 @@ class MemberViewSet(viewsets.ModelViewSet):
         
         # 注册用户名校验
         if len(user):
-            print('已注册')
             is_new = False
         else:
-            print('未注册')
             data['id'] = uuid.uuid1()
             data['password'] = make_password(data['password'])
             user = Member.objects.create(**data)

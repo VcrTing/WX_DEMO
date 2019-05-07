@@ -9,94 +9,73 @@ const API = BASE_URL + API_NAME
 const api = {
   OPENID: BASE_URL + '/web/wx/openId',
   LOGIN: API + '/member/login/',
-  ORDER: API + '/order/',
-  ORDER_BELONG: API + '/order_belong/',
+  MEMBER: API + '/member/',
   MEMBER_MSG: API + '/member_msg/',
   MEMBER_MSG_CREATE: API + '/member_msg/create_or_update/',
-  HOME_SLIDER: API + '/home_slider/',
+  ORDER: API + '/order/',
+  ORDER_BELONG: API + '/order_belong/',
   BLOG: API + '/blog/',
-  SHOW_BLOG: BASE_URL + '/web/blog/'
+  SHOW_BLOG: BASE_URL + '/web/blog/',
+  HOME_SLIDER: API + '/home_slider/'
 }
 
 // APP
 App({
   onLaunch: function () {
-    const self = this
+    var self = this
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    this.userInfo()
+    wx.getUserInfo({
+      success: (res) => {
+        this.globalData.userInfo = res.userInfo
+        typeof e == "function" && e(this.globalData.userInfo)
+        // console.log('UserInfo', this.globalData.userInfo)
+      }
+    })
 
     // 登录
     wx.login({
       success: (res) => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        wx.request({
-          url: api.OPENID,
-          data: {
-            'code': res.code
-          },
-          success: (res) => {
-            const status = res.data.status
-            res = res.data.res
-            const openid = res.openid
-            const session_key = res.session_key
-            
-            if (status) {
-              // 去网页后台注册并且登陆用户，获取token，才能访问后台服务器的关键功能
-              wx.request({
-                url: api.LOGIN,
-                method: 'POST',
-                data: {
-                  username: openid,
-                  password: openid
-                },
-                success: (res) => {
-                  const status = res.data.status
-                  const is_new = res.data.is_new
-                  res = res.data.res
-                  self.globalData.memberId = res.id
-                }
-              })
-            }
-          } 
-        })
+        try {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          wx.request({
+            url: api.OPENID,
+            data: {
+              'code': res.code
+            },
+            success: (res) => {
+              const status = res.data.status
+              res = res.data.res
+              const openid = res.openid
+              const session_key = res.session_key
+
+              if (status) {
+                // 去网页后台注册并且登陆用户，获取token，才能访问后台服务器的关键功能
+                wx.request({
+                  url: api.LOGIN,
+                  method: 'POST',
+                  data: {
+                    'username': openid,
+                    'password': openid
+                  },
+                  success: (res) => {
+                    const status = res.data.status
+                    const is_new = res.data.is_new
+                    res = res.data.res
+                    self.globalData.memberId = res.id
+                  }
+                })
+              }
+            } 
+          })
+        } catch(err) {
+          console.log('服务器错误，服务需重启！！！')
+        }
       }
     })
-    this.systemInfo()
-  },
-  /**
-   * 获取用户数据
-   */
-  userInfo: function(e) {
-    wx.login({
-      success: (e) => {
-        wx.getUserInfo({
-          success: (res) => {
-            this.globalData.userInfo = res.userInfo
-            typeof e == "function" && e(this.globalData.userInfo)
-            // console.log('UserInfo', this.globalData.userInfo)
-          }
-        })
-      }
-    })
-  },
-  systemInfo: (e) => {
-    wx.getSystemInfo({
-      success: function (res) {
-        /*
-        console.log(res.model)    //  手机型号
-        console.log(res.pixelRatio)
-        console.log(res.windowWidth)
-        console.log(res.windowHeight)
-        console.log(res.language)
-        console.log(res.version)
-        console.log(res.platform)
-        console.log(res.system) //  操作系统版本
-        */
-      }
-    })
+    // onLaunch
   },
   globalData: {
     userInfo: null,
@@ -135,4 +114,36 @@ wx.getSetting({
     }
   }
 })
+
+// 获取用户数据
+userInfo: function(e) {
+  wx.login({
+    success: (e) => {
+      wx.getUserInfo({
+        success: (res) => {
+          this.globalData.userInfo = res.userInfo
+          typeof e == "function" && e(this.globalData.userInfo)
+          console.log('UserInfo', this.globalData.userInfo)
+        }
+      })
+    }
+  })
+},
+
+// 获取手机信息
+systemInfo: (e) => {
+  wx.getSystemInfo({
+    success: function (res) {
+      console.log(res.model)    //  手机型号
+      console.log(res.pixelRatio)
+      console.log(res.windowWidth)
+      console.log(res.windowHeight)
+      console.log(res.language)
+      console.log(res.version)
+      console.log(res.platform)
+      console.log(res.system) //  操作系统版本
+    }
+  })
+},
+
 */

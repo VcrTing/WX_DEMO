@@ -3,8 +3,12 @@ let show_tool = false
 let flag = true
 const serverErrorImg = '/lib/imgs/usefull/serverError.png'
 const serverErrorImg_16x9 = '/lib/imgs/usefull/serverError_16x9.png'
+const emptyData_16x9 = '/lib/imgs/usefull/emptyData_16x9.png'
+const emptyData_3x4 = '/lib/imgs/usefull/emptyData_3x4.png'
+
 //获取应用实例
 const app = getApp()
+
 Page({
     /**
      * 页面的初始数据
@@ -54,36 +58,34 @@ Page({
         width: 50,
         height: 50
       }],
+
+      contact_us: {
+        tel: '0796-45536',
+        latitude: 23.099994,
+        longitude: 113.324520
+      }
     },
   
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      /*
-      app.getUserInfo((personInfo) => {
-        //更新数据
-        this.setData({
-          userInfo: personInfo
-        })
-      })
-      console.log('userInfo:', this.userInfo)
-
-      */
-      const slider_list = []
+      
       // 首页轮播图
+      const slider_list = []
       let url = `${app.globalData.api.HOME_SLIDER}?status=true`
+      
       wx.request({
         url: url,
         success: (res) => {
           const code = res.statusCode
-          if (code == 200) {
-            const data = res.data
+          const data = res.data
+          if (data.length >= 1) {
             for (const i in data) {
               slider_list.push(data[i].img)
             }
           } else {
-            slider_list.push(serverErrorImg)
+            slider_list.push(emptyData_16x9)
           }
           this.setData({
             home_slider: slider_list
@@ -95,16 +97,24 @@ Page({
           })
         }
       })
+
       // 博客
       url = `${app.globalData.api.BLOG}?status=true&ordering=-add_time&limit=2&offset=0`
+      
       wx.request({
         url: url,
         success: (res) => {
           const code = res.statusCode
-          if (code == 200) {
-            const data = res.data.results
+          const data = res.data.results
+          if (data.length >= 1) {
             this.setData({
               blog: data
+            })
+          } else {
+            this.setData({
+              blog: [
+                {}, {}
+              ]
             })
           }
         },
@@ -126,13 +136,44 @@ Page({
           })
         }
       })
+      // onLoad
     },
   
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
+      const memberId = app.globalData.memberId
+      const userInfo = app.globalData.userInfo
+      const url = `${app.globalData.api.MEMBER}${memberId}/`
+      let gender = '';
+      (userInfo.gender == 1) ? gender='male' : gender='female';
 
+      try {
+        wx.request({
+          url: url,
+          method: 'PUT',
+          data: {
+            'nickName': userInfo.nickName,
+            'avatarUrl': userInfo.avatarUrl,
+            'gender': gender,
+            'country': userInfo.country,
+            'province': userInfo.province,
+            'city': userInfo.city
+          },
+          success: (res) => {
+            const code = res.statusCode
+            if (code != 200) {
+              console.log('用户信息更新失败！！！')
+            }
+          },
+          fail: (res) => {
+            console.log('服务器错误，本次用户信息更新失败！！！')
+          }
+        })
+      } catch(err) {
+        console.log('服务器错误，本次用户信息存储失败！！！')
+      }
     },
   
     /**
@@ -185,14 +226,32 @@ Page({
     },
 
     /**
+     * 打电话
+     */
+    callPhone: function(e) {
+      wx.makePhoneCall({
+        phoneNumber: this.data.contact_us.tel,
+      })
+    },
+
+    /**
      * 去博客界面
      */
     goActivity: function(e) {
       const id = e.currentTarget.dataset.id;
-      const url = `/pages/Posts/posts?id=${id}`
-      wx.navigateTo({
-        url: url
-      })
+      if (id) {
+        const url = `/pages/Posts/posts?id=${id}`
+        wx.navigateTo({
+          url: url
+        })
+      } else {
+        wx.showToast({
+          title: 'Warning, There are no blogs to show for it',
+          icon: 'none',
+          duration: 3000,
+          mask: true
+        })
+      }
     },
 
     /**
