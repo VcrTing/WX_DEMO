@@ -1,6 +1,7 @@
 # Install
 
 [Python3.7]
-url=https://www.cnblogs.com/contiune/p/10575113.html
 
 [Git]
+
+[]

@@ -1,6 +1,6 @@
 //Api
 const 
-  BASE_URL = 'http://127.0.0.1:8000',// 'http://nodejs.up5d.com',
+  BASE_URL = 'http://nodejs.up5d.com',
   API_NAME = '/api'
 
 const API = BASE_URL + API_NAME
