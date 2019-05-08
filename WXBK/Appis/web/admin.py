@@ -37,4 +37,7 @@ class HomeSliderAdmin(admin.ModelAdmin):
     list_editable = ['status']
     list_filter = ['status']
     list_per_page = 50
-    empty_value_display = '- 无 -'
+    empty_value_display = ADMIN_CONF['empty_value_display']
+
+    def get_ordering(self, request):
+        return ['id', ]

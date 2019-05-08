@@ -26,13 +26,13 @@ class Blog(models.Model):
     flag = models.CharField(max_length=30, default='blog', verbose_name='图片功能标识')
     title = models.CharField(max_length=120, default='', verbose_name='宣传标题')
 
-    content = RichTextField(default='', verbose_name='内容讯息')
+    content = RichTextUploadingField(default='', verbose_name='内容讯息')
     """
     UEditorField(width=600, height=300, toolbars="full",
         imagePath="images/", filePath="files/", upload_settings={"imageMaxSize": 1204000*2}, 
         settings={}, verbose_name='内容讯息')
     """
-    status = models.BooleanField(verbose_name='数据状态', default=True)
+    status = models.BooleanField(verbose_name='是否可用', default=True)
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
     class Meta:

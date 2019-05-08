@@ -8,6 +8,7 @@ from WXBK.settings import ADMIN_CONF
 admin.site.site_title = ADMIN_CONF['admin_title']
 admin.site.site_header = ADMIN_CONF['admin_header']
 
+ORDER_STATUS = [ '已过期', '待回应', '预约中', '已完成']
 # Register your models here.
 class OrderAdmin(admin.ModelAdmin):
     usefull = ['order_number', 'order_title', 'order_content', 'order_date', 'order_time', 'status']
@@ -35,9 +36,13 @@ class OrderAdmin(admin.ModelAdmin):
     
     search_fields = ['order_number', 'order_date', 'order_time']
     list_filter = ['order_status']
+    date_hierarchy = 'add_time'
 
     list_per_page = 30
-    empty_value_display = '- 空白 -'
+    empty_value_display = ADMIN_CONF['empty_value_display']
+
+    def get_ordering(self, request):
+        return ['-add_time', ]
 
 class OrderBelongAdmin(admin.ModelAdmin):
 
@@ -47,32 +52,34 @@ class OrderBelongAdmin(admin.ModelAdmin):
     def email(self, obj):
         return obj.member_msg.email
     email.short_description = '邮箱'
+    """
     def phone(self, obj):
         return obj.member_msg.phone
     phone.short_description = '电话'
-
+    """
     def order_number(self, obj):
         return obj.order.order_number
     order_number.short_description = '订单号'
     def order_title(self, obj):
         return obj.order.order_title
-    order_title.short_description = '订单标题'
+    order_title.short_description = '产品项目'
     def order_status(self, obj):
         s = obj.order.order_status
         if (s == 0):
-            return '不可用'
+            return ORDER_STATUS[0]
         elif (s == 1):
-            return '待回应'
+            return ORDER_STATUS[1]
         elif (s == 2):
-            return '预约中'
+            return ORDER_STATUS[2]
         elif (s == 3):
-            return '已完成'
+            return ORDER_STATUS[3]
     order_status.short_description = '订单状态'
     def order_content(self, obj):
         return obj.order.order_content
-    order_content.short_description = '订单内容'
+    order_content.short_description = '备注'
 
-    list_display = ['name', 'order_number', 'order_title', 'order_content', 'email', 'phone', 'order_status', 'status', 'add_time']
+    list_display = ['order_number', 'name', 'order_title', 'order_content', 'email', 'order_status', 'status', 'add_time']
+    list_display_links = ('order_number', )
     fieldsets = (
         ("订单详情", {
             "fields": (
@@ -81,7 +88,7 @@ class OrderBelongAdmin(admin.ModelAdmin):
         }),
         ("所属用户的资料", {
             "fields": (
-                'name', 'email', 'phone'
+                'name', 'email'
             ),
         }),
         ("其他", {
@@ -90,11 +97,11 @@ class OrderBelongAdmin(admin.ModelAdmin):
             ),
         }),
     )
-    search_fields = ['order_number', 'email', 'phone', 'name']
+    search_fields = ['order_number', 'email', 'name']
     readonly_fields = list_display
 
     list_per_page = 30
-    empty_value_display = '- 空白 -'
+    empty_value_display = ADMIN_CONF['empty_value_display']
 
 admin.site.register(models.Order, OrderAdmin)
 admin.site.register(models.OrderBelong, OrderBelongAdmin)

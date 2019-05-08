@@ -43,4 +43,4 @@ class BlogAdmin(admin.ModelAdmin):
     list_editable = ['status']
     list_filter = ['status']
     list_per_page = 10
-    empty_value_display = '- 无 -'
+    empty_value_display = ADMIN_CONF['empty_value_display']

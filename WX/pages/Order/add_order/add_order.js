@@ -270,10 +270,10 @@ Page({
       return 'You should write down some Mark.'
     } else {
       const len = mark.length
-      if (len< 15) {
-        return 'The Mark length must be greater than 15.'
-      } else if (len> 120) {
-        return 'The Maek length must be less than 120.'
+      if (len< 8) {
+        return 'The Mark length must be greater than 8.'
+      } else if (len> 240) {
+        return 'The Mark length must be less than 240.'
       } 
     }
     return true

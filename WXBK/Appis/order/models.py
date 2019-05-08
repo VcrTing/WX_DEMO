@@ -9,7 +9,7 @@ from Extra.utils import union
 
 # Create your models here.
 ORDER_STATUS = (
-    (0, '不可用'),
+    (0, '已过期'),
     (1, '待回应'),
     (2, '预约中'),
     (3, '已完成'),
@@ -26,7 +26,7 @@ class Order (models.Model):
     order_status = models.IntegerField(choices=ORDER_STATUS, default=1, verbose_name='订单状态')
     member = models.ForeignKey(MemberModels.Member, on_delete=models.CASCADE, null=True, blank=True, verbose_name='用户')
 
-    status = models.BooleanField(verbose_name='数据状态', default=True)
+    status = models.BooleanField(verbose_name='是否可用', default=True)
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
     class Meta:
@@ -43,7 +43,7 @@ class OrderBelong (models.Model):
     member_msg = models.ForeignKey(MemberModels.MemberMsg, on_delete=models.CASCADE, null=True, blank=True, verbose_name='订单所属用户')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True, verbose_name='订单')
 
-    status = models.BooleanField(verbose_name='数据状态', default=True)
+    status = models.BooleanField(verbose_name='是否可用', default=True)
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
     class Meta:

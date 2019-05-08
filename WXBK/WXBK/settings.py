@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 MINE_APPS = [
+    'Extra.admin',
     'django_filters',
     'rest_framework',
     # 'rest_framework.authtoken',
@@ -153,7 +154,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'Media')
 # Admin
 ADMIN_CONF = {
     'admin_title': '微信小程序后台',
-    'admin_header': '微信小程序后台'
+    'admin_header': '微信小程序后台',
+    'empty_value_display': '_Unknow_'
 }
 
 # Rest Framework

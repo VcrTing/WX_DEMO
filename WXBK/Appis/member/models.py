@@ -43,10 +43,10 @@ class MemberMsg(models.Model):
     bith = models.DateField(null=True, blank=True, verbose_name='出生年月')
     phone = models.CharField(max_length=11, null=True, blank=True, verbose_name='联系电话')
     email = models.CharField(max_length=100, null=True, blank=True, verbose_name='邮箱')
-    gender = models.CharField(max_length=6, choices=(('male', u'男'), ('female', u'女')), default='male')
+    gender = models.CharField(max_length=6, choices=(('male', u'男'), ('female', u'女')), default='male', verbose_name='性别')
     member = models.ForeignKey(Member, on_delete=models.CASCADE, null=True, blank=True, verbose_name='用户')
 
-    status = models.BooleanField(verbose_name='数据状态', default=True)
+    status = models.BooleanField(verbose_name='是否可用', default=True)
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
     class Meta:

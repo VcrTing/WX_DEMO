@@ -45,13 +45,16 @@ class MemberAdmin(admin.ModelAdmin):
     list_filter = ['gender', 'country', 'status']
 
     list_per_page = 50
-    empty_value_display = '- 空白 -'
+    empty_value_display = ADMIN_CONF['empty_value_display']
+
+    def get_ordering(self, request):
+        return ['-add_time', ]
 
 @admin.register(models.MemberMsg)
 class MemberMsgAdmin(admin.ModelAdmin):
     list_display = ['name', 'bith', 'phone', 'email', 'gender', 'status', 'add_time']
     exclude = ['id']
-    readonly_fields = list_display
+    readonly_fields = ['add_time']
     fieldsets = (
         ("基本信息", {
             "fields": (
@@ -73,5 +76,7 @@ class MemberMsgAdmin(admin.ModelAdmin):
     list_filter = ['status']
 
     list_per_page = 50
-    empty_value_display = '- 空白 -'
+    empty_value_display = ADMIN_CONF['empty_value_display']
 
+    def get_ordering(self, request):
+        return ['-add_time', ]

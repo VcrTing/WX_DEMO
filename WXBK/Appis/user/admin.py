@@ -11,7 +11,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display = ['username', 'nickName', 'bith', 'phone', 'email', 'gender', 'status']
     search_fields = ['phone', 'email']
     list_filter = ['gender', 'status']
-    readonly_fields = ['password']
+    readonly_fields = ['last_login']
     exclude = ['id']
     fieldsets = (
         ("账号信息", {
@@ -36,6 +36,6 @@ class UserProfileAdmin(admin.ModelAdmin):
         }),
     )
     list_per_page = 50
-    empty_value_display = '- 空白 -'
+    empty_value_display = ADMIN_CONF['empty_value_display']
 
 admin.site.register(models.UserProfile, UserProfileAdmin)

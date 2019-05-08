@@ -23,7 +23,7 @@ class HomeSlider(models.Model):
     img = models.ImageField(verbose_name='图片', upload_to=upload)
     flag = models.CharField(max_length=30, default='slider', verbose_name='图片功能标识')
 
-    status = models.BooleanField(verbose_name='数据状态', default=True)
+    status = models.BooleanField(verbose_name='是否可用', default=True)
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
     class Meta:

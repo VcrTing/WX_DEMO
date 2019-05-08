@@ -150,9 +150,6 @@ Page({
               wx.showModal({
                 title: 'Error',
                 content: 'Sorry, the inquiry order is wrong.',
-                success: function (sm) {
-
-                }
               })
             },
             complete: (res) => {
