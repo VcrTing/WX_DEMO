@@ -11,18 +11,9 @@ from rest_framework.response import Response
 from rest_framework import mixins, viewsets, permissions, status
 from rest_framework.authentication import SessionAuthentication
 
+from Appis.user.models import UserProfile
+
 User = get_user_model()
-class CustomBackend(ModelBackend):
-    """
-        自定义用户验证
-    """
-    def authenticate(self, username=None, password=None, **kwargs):
-        try:
-            user = User.objects.get(Q(username = username)|Q(email = username))
-            if user.check_password(password):
-                return user
-        except Exception as e:
-            return None
 
 # Create your views here.
 class UserViewSet():

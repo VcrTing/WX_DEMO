@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 from . import models
 from WXBK.settings import ADMIN_CONF
@@ -7,7 +8,7 @@ admin.site.site_title = ADMIN_CONF['admin_title']
 admin.site.site_header = ADMIN_CONF['admin_header']
 
 # Register your models here.
-class UserProfileAdmin(admin.ModelAdmin):
+class UserProfileAdmin(UserAdmin):
     list_display = ['username', 'nickName', 'bith', 'phone', 'email', 'gender', 'status']
     search_fields = ['phone', 'email']
     list_filter = ['gender', 'status']
@@ -21,7 +22,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         }),
         ("权限相关", {
             "fields": (
-                'is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions'
+                'is_staff', 'is_active', 'groups'
             ),
         }),
         ("个人资料", {

@@ -27,14 +27,6 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    wx.getUserInfo({
-      success: (res) => {
-        this.globalData.userInfo = res.userInfo
-        typeof e == "function" && e(this.globalData.userInfo)
-        // console.log('UserInfo', this.globalData.userInfo)
-      }
-    })
-
     // 登录
     wx.login({
       success: (res) => {
@@ -46,12 +38,11 @@ App({
               'code': res.code
             },
             success: (res) => {
-              const status = res.data.status
               res = res.data.res
               const openid = res.openid
               const session_key = res.session_key
 
-              if (status) {
+              try {
                 // 去网页后台注册并且登陆用户，获取token，才能访问后台服务器的关键功能
                 wx.request({
                   url: api.LOGIN,
@@ -61,12 +52,46 @@ App({
                     'password': openid
                   },
                   success: (res) => {
-                    const status = res.data.status
-                    const is_new = res.data.is_new
                     res = res.data.res
                     self.globalData.memberId = res.id
+                    const memberId = res.id
+
+                    wx.getUserInfo({
+                      success: (res) => {
+                        const userInfo = res.userInfo
+                        this.globalData.userInfo = res.userInfo
+                        typeof e == "function" && e(this.globalData.userInfo)
+
+                        // 上传用户信息
+                        let gender = '';
+                        (userInfo.gender == 1) ? gender='male' : gender='female';
+                        wx.request({
+                          url: `${api.MEMBER}${memberId}/`,
+                          method: 'PUT',
+                          data: {
+                            'nickName': userInfo.nickName,
+                            'avatarUrl': userInfo.avatarUrl,
+                            'gender': gender,
+                            'country': userInfo.country,
+                            'province': userInfo.province,
+                            'city': userInfo.city
+                          },
+                          success: (res) => {
+                            const code = res.statusCode
+                            if (code != 200) {
+                              console.log('用户信息更新失败！！！')
+                            }
+                          },
+                          fail: (res) => {
+                            console.log('服务器错误，本次用户信息更新失败！！！')
+                          }
+                        })
+                      }
+                    })
                   }
                 })
+              } catch(err) {
+
               }
             } 
           })

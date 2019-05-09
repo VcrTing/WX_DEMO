@@ -70,7 +70,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'WXBK.urls'
+
 AUTH_USER_MODEL = 'user.UserProfile'
+
+AUTHENTICATION_BACKENDS = (
+    'Extra.admin.auth.CustomBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 TEMPLATES = [
     {

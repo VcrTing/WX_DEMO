@@ -143,12 +143,11 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-      const memberId = app.globalData.memberId
-      const userInfo = app.globalData.userInfo
-      const url = `${app.globalData.api.MEMBER}${memberId}/`
+      
+    },
+    upd_member: function(userInfo, url) {
       let gender = '';
       (userInfo.gender == 1) ? gender='male' : gender='female';
-
       try {
         wx.request({
           url: url,

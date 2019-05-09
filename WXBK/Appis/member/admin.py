@@ -19,7 +19,7 @@ class MemberAdmin(admin.ModelAdmin):
     avatar.allow_tags = True
     avatar.short_description = '微信头像'
 
-    list_display = ['avatar', 'nickName', 'gender', 'country', 'province', 'city', 'unionId', 'status', 'add_time']
+    list_display = ['avatar', 'nickName', 'gender', 'country', 'province', 'city', 'status', 'add_time']
     exclude = ['id', 'username', 'password', 'avatarUrl']
     fieldsets = (
         ("基本信息", {
