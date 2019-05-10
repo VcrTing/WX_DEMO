@@ -31,6 +31,21 @@
 }
 
 .order {
+    
+}
+
+.order-content {
+    padding-top: 72rpx;
+    padding-bottom: 18rpx;
+    box-shadow: 0 9rpx 15rpx rgba(195, 195, 195, 0.3); 
+}
+
+.order-status-icon {
+    font-size: 5.6em;
+}
+
+/*
+.order {
     padding: 2rpx 0px;
     background: white;
     margin-top: 36rpx;
@@ -84,3 +99,4 @@
 .no-more {
     color: #7e7e7e;
 }
+*/

@@ -56,6 +56,11 @@ App({
                     self.globalData.memberId = res.id
                     const memberId = res.id
 
+                    wx.setStorage({
+                      key: 'memberId',
+                      data: memberId
+                    })
+
                     wx.getUserInfo({
                       success: (res) => {
                         const userInfo = res.userInfo

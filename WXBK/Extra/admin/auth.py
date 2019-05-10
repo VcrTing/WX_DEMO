@@ -14,5 +14,8 @@ class CustomBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         print('username:', username)
         user = UserProfile.objects.get(Q(username = username)|Q(email=username))
-        if user.check_password(password):
-            return user
+        try:
+            if user.check_password(password):
+                return user
+        except:
+            return None

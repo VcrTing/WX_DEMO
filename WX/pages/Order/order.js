@@ -28,7 +28,14 @@ Page({
      * 生命周期函数--监听页面`  显示
      */
     onShow: function () {
-      this.loading_data()
+      const memberId = wx.getStorageSync('memberId') || undefined
+      if (memberId) {
+        this.loading_data()
+      } else {
+        setTimeout(() => {
+          this.loading_data()
+        }, 1000)
+      }
     },
   
     /**
@@ -64,6 +71,12 @@ Page({
      */
     onShareAppMessage: function () {
   
+    },
+    /**
+     * 打开订单详情模态框
+     */
+    orderDetail: function (e) {
+
     },
 
     /**
@@ -125,9 +138,9 @@ Page({
      */
     loading_data: function() {
       setTimeout(() => {
-        const memberId = app.globalData.memberId
+        const memberId = wx.getStorageSync('memberId')
         const url = `${app.globalData.api.ORDER}?member=${memberId}&status=true`
-  
+      
         try {
           wx.request({
             url: url,
@@ -137,6 +150,7 @@ Page({
                 this.setData({
                   order_list: res.data
                 })
+                console.log(this.data.order_list)
               } else {
                 wx.showToast({
                   title: 'You dont have an order yet',
