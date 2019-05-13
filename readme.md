@@ -11,10 +11,5 @@ version = 1.0
 last_edit = 2019-5-13 18:37
 <p align='right'>💗</p>
 
-<style>
-.bg-main {
-    background: rgb(255, 174, 200);
-}
-</style>
-
-<p class="bg-main">aa</p>
+<br/>
+<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/About%20Us%20Detail.png?raw=true" style="width: 100%;">
