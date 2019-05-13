@@ -12,4 +12,4 @@ last_edit = 2019-5-13 18:37
 <p align='right'>💗</p>
 
 <br/>
-<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/About%20Us%20Detail.png?raw=true" style="width: 100%;">
+<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/About%20Us%20Detail.png?raw=true" width="25%">
