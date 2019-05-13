@@ -214,6 +214,9 @@ view {
   height: 168rpx
 }
 
+.text-italic {
+  font-style: italic;
+}
 .text-bold {
   font-weight: 600;
 }
@@ -250,6 +253,10 @@ view {
 
 .text-massive {
   font-size: 1.4em;
+}
+
+.text-boom {
+  font-size: 2em;
 }
 
 .text-mini {
@@ -353,6 +360,68 @@ Loading
   border-bottom: 4rpx solid rgb(0, 168, 243);
 }
 
+.modal {
+  position: fixed;
+  width: 750rpx;
+  height: 100vh;
+  z-index: 8000;
+}
+.modal-wrapper {
+  position: relative;
+}
+.modal-hui,
+.modal-main {
+  position: absolute;
+}
+.modal-hui {
+  background: rgba(0, 0, 0, 0.4);
+  width: 750rpx;
+  height: 100vh;
+}
+.modal-header {
+  padding-top: 9rpx;
+  height: 10vh;
+  overflow: hidden;
+}
+.modal-content {
+  padding: 8rpx 0;
+  overflow: scroll;
+  height: 73vh;
+}
+.modal-main {
+  z-index: 8001;
+  width: 750rpx;
+  height: 90vh;
+  margin: 36rpx 0;
+}
+.modal-footer {
+  height: 8vh;
+  overflow: hidden;
+}
+.modal-btn {
+  display: block;
+  font-weight: bolder;
+  padding: 2vh 36rpx;
+  text-align: center;
+  /*
+  linear-gradient(
+    rgb(0, 168, 243) 0%, 
+    #0070c5 100%
+  );
+  */
+}
+
+.show-modal {
+  opacity: 1;
+  display: block;
+  transition: all 2s;
+}
+.colse-modal {
+  opacity: 0;
+  display: none;
+  transition: all 2s;
+}
+
 /*
   Order
 */
@@ -377,6 +446,9 @@ Loading
 }
 .text-orange {
   color: orange;
+}
+.text-orange-deep {
+  color: rgb(190, 124, 0);
 }
 .text-green {
   color: green;

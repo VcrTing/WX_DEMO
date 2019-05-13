@@ -5,16 +5,28 @@ Page({
      * 页面的初始数据
      */
     data: {
+        no_order: true,
         order_list: [],
         is_loading: true,
-        loading_img: '/lib/imgs/new/loading.gif'
+        loading_img: '/lib/imgs/new/loading.gif',
+
+        h: 0,
+        modal: '',
+        this_order: {},
+        open_modal: false
     },
   
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+      wx.getSystemInfo({
+        success: (res) => {
+          this.setData({
+            h: res.screenHeight
+          })
+        }
+      })
     },
   
     /**
@@ -76,13 +88,40 @@ Page({
      * 打开订单详情模态框
      */
     orderDetail: function (e) {
+      const index = e.currentTarget.dataset.index;
+      const order = this.data.order_list[index]
 
+      this.setData({
+        this_order: order
+      })
+
+      var animation = wx.createAnimation({
+        timingFunction: "ease",
+      })
+      animation.translateY(0).step({duration: 2000})
+      this.setData({
+        modal: animation.export(),
+        open_modal: true
+      })
+    },
+    closeModal: function (e) {
+      var animation = wx.createAnimation({
+        timingFunction: "ease",
+      })
+      animation.translateY(-1334).step({duration: 1000})
+      this.setData({modal: animation.export()})
+
+      setTimeout(() => {
+        this.setData({
+          open_modal: false
+        })
+      }, 200)
     },
 
     /**
      * 删除订单
      */
-    del_order: function(e) {
+    del_order: function (e) {
       let id = e.currentTarget.dataset.id;
       let self = this;
       wx.showModal({
@@ -95,6 +134,7 @@ Page({
                 url: `${app.globalData.api.ORDER}${id}/`,
                 method: 'DELETE',
                 success: (res) => {
+                  self.closeModal()
                   self._del_order(id)
                 },
                 fail: (res) => {
@@ -115,7 +155,7 @@ Page({
         }
       })
     },
-    _del_order: function(id) {
+    _del_order: function (id) {
       let order_lists = this.data.order_list;
       for (let item of order_lists) {
         if (item.id == id) {
@@ -123,7 +163,7 @@ Page({
         }
       }
       this.setData({
-        order_list: order_lists
+        order_list: order_lists,
       })
       wx.showToast({
         title: 'Trashed !!!',
@@ -136,10 +176,10 @@ Page({
     /**
      * 取消加载
      */
-    loading_data: function() {
+    loading_data: function () {
       setTimeout(() => {
         const memberId = wx.getStorageSync('memberId')
-        const url = `${app.globalData.api.ORDER}?member=${memberId}&status=true`
+        const url = `${app.globalData.api.ORDER}?member=${memberId}&status=true&ordering=-id`
       
         try {
           wx.request({
@@ -148,15 +188,8 @@ Page({
             success: (res) => {
               if (res.data.length > 0) {
                 this.setData({
-                  order_list: res.data
-                })
-                console.log(this.data.order_list)
-              } else {
-                wx.showToast({
-                  title: 'You dont have an order yet',
-                  icon: 'none',
-                  duration: 5000,
-                  mask: true
+                  order_list: res.data,
+                  no_order: false
                 })
               }
             },
@@ -182,7 +215,7 @@ Page({
     /**
      * 重新加载
      */
-    reload: function(e) {
+    reload: function (e) {
       wx.switchTab({
         url: "/pages/Order/order",
         success: (res) => {

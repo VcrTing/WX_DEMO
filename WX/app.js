@@ -5,6 +5,9 @@ const
 
 const API = BASE_URL + API_NAME
 
+const APP_ID = 'wx6771d33c47ab8dc5'
+const APP_SECRET = '8110a69b3c7d52ba7cd0a8484d4b41b9'
+
 // 网络请求配置项
 const api = {
   OPENID: BASE_URL + '/web/wx/openId',
@@ -35,7 +38,9 @@ App({
           wx.request({
             url: api.OPENID,
             data: {
-              'code': res.code
+              'code': res.code,
+              'appId': APP_ID,
+              'appSecret': APP_SECRET
             },
             success: (res) => {
               res = res.data.res

@@ -6,6 +6,7 @@
     background: white;
     position: fixed;
     display: table;
+    z-index: 2000;
 }
 .empty,
 .header {
@@ -31,19 +32,27 @@
 }
 
 .order {
-    
+    margin-bottom: 36rpx;
 }
 
 .order-content {
     padding-top: 72rpx;
     padding-bottom: 18rpx;
-    box-shadow: 0 9rpx 15rpx rgba(195, 195, 195, 0.3); 
+    box-shadow: 0 12rpx 15rpx rgba(195, 195, 195, 0.3); 
+    transition: all 3s;
+}
+.order-content:hover {
+    box-shadow: 0 18rpx 18rpx rgba(195, 195, 195, 0.5);
 }
 
 .order-status-icon {
     font-size: 5.6em;
+    z-index: 1000;
 }
-
+.order-status-icon:hover {
+    transform: rotateZ(360deg);
+    transition: all 3s;
+}
 /*
 .order {
     padding: 2rpx 0px;

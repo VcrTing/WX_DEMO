@@ -31,15 +31,15 @@ class HomeSliderViewSet(viewsets.ModelViewSet):
 class OpenIdView(View):
     def get(self, request):
         code = request.GET.get('code', '')
-        app_id = WX_CONF['APP_ID']
-        app_secret = WX_CONF['APP_SECRET']
+        app_id = request.GET.get('appId', WX_CONF['APP_ID']) 
+        app_secret = request.GET.get('appSecret', WX_CONF['APP_SECRET']) 
         url = 'https://api.weixin.qq.com/sns/jscode2session?appid='+ app_id +'&secret='+ app_secret +'&js_code='+ code +'&grant_type=authorization_code'
         res = requests.get(url)
         res = eval(res.text)
         session_key = res['session_key']
         open_id = res['openid']
         
-        url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ open_id +'&secret=' + app_secret
+        # url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ open_id +'&secret=' + app_secret
 
         return JsonResponse({
             'status': True,

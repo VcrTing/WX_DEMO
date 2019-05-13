@@ -4,7 +4,7 @@
 <br/>
 <br/>
 
-### [微信小程序演示项目](http://nodejs.up5d.com/)
+### [微信小程序演示项目](http://nodejs.up5d.com/admin)
 
 version = 1.0
 <br/>
