@@ -18,10 +18,10 @@ last_edit = 2019-5-13 18:37
 
 #### 首页
 
-<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Our%20Activities.png?raw=true" width="25%">
+<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Our%20Activites.png?raw=true" width="25%">
 <img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Our%20Product.png?raw=true" width="25%">
-<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/About%20us%20Detail.png?raw=true" width="25%">
-<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Contact%%20Us.png?raw=true" width="25%">
+<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/About%20Us%20Detail.png?raw=true" width="25%">
+<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Contact%20Us.png?raw=true" width="25%">
 
 <br/>
 
