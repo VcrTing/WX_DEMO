@@ -90,31 +90,27 @@
                             Order
                         </view>
                         <view class="text-main modal-del float-right d-inline" data-id="{{ this_order.id }}" bindtap="del_order">
-                            Trash!
+                            Trash?
                         </view>
                     </view>
                     <view class="line"></view>
                     <view class="this_order">
-                        <view class="text-bolder text-dark">
+                        <view class="this_order-item text-bolder text-huge text-dark mt-15">
                             <view class="d-inline">
-                                <icon class="iconfont iconguanbi text-boom text-red"
+                                <icon class="iconfont iconguanbi text-massive text-red"
                                     wx:if="{{ this_order.order_status == 0 }}"></icon>
-                                <icon class="iconfont iconshenhe text-boom text-gold"
+                                <icon class="iconfont iconshenhe text-massive text-gold"
                                     wx:if="{{ this_order.order_status == 1 }}"></icon>
-                                <icon class="iconfont icondaishouhuo text-boom text-orange"
+                                <icon class="iconfont icondaishouhuo text-massive text-orange"
                                     wx:if="{{ this_order.order_status == 2 }}"></icon>
-                                <icon class="iconfont iconyiwancheng text-boom text-green"
+                                <icon class="iconfont iconyiwancheng text-massive text-green"
                                     wx:if="{{ this_order.order_status == 3 }}"></icon>
                             </view>
-                            {{ this_order.order_number }}
+                            <view class="d-inline text-big">
+                              {{ this_order.order_number }}
+                            </view>
                         </view>
-                        <view class="this_order-item">
-                            <view class="d-inline">
-                                Product:
-                            </view> 
-                            {{ this_order.order_title }}
-                        </view>
-                        <view class="this_order-item">
+                        <view class="this_order-item text-dark mt-15">
                             <view class="d-inline">
                                 Date Time: 
                             </view>
@@ -139,6 +135,12 @@
                                     > Completed </text>
                             </text>
                         </view>
+                        <view class="this_order-item mt-15">
+                            <view class="d-inline">
+                                Product:
+                            </view> 
+                            {{ this_order.order_title }}
+                        </view>
                         <view class="this_order-item">
                             <view class="d-inline">
                                 Mark: 
@@ -154,72 +156,3 @@
         </view>
     </view>
 </view>
-
-<!-- 
-
-                        <view class="text-main float-right" data-id="{{ this_order.id }}" bindtap="del_order">
-                            Trash!
-                        </view>
-
-                            <view class="this_order mt-15">
-                                <view class="this_order-header text-center">
-                                    <icon class="iconfont iconguanbi text-boom text-red"
-                                        wx:if="{{ this_order.order_status == 0 }}"></icon>
-                                    <icon class="iconfont iconshenhe text-boom text-gold"
-                                        wx:if="{{ this_order.order_status == 1 }}"></icon>
-                                    <icon class="iconfont icondaishouhuo text-boom text-orange"
-                                        wx:if="{{ this_order.order_status == 2 }}"></icon>
-                                    <icon class="iconfont iconyiwancheng text-boom text-green"
-                                        wx:if="{{ this_order.order_status == 3 }}"></icon>
-
-                                    <view wx:if="{{ this_order.order_status == 2 }}"
-                                        class="text-orange text-bolder"
-                                    >
-                                        {{ this_order.order_number }}
-                                    </view>
-                                    <view class="text-bolder" wx:else>
-                                        {{ this_order.order_number }}
-                                    </view>
-                                </view>
-                                <view class="line"></view>
-                                <view class="this_order-content text-grey">
-                                    <view class="mt-half">
-                                        <view class="d-inline text-bolder text-dark">
-                                            Product:
-                                        </view> 
-                                        {{ this_order.order_title }}
-                                    </view>
-                                    <view class="mt-half">
-                                        <view class="d-inline text-bolder text-dark">
-                                            Date Time: 
-                                        </view>
-                                        {{ this_order.order_date }} {{ this_order.order_time }}
-                                    </view>
-                                    <view class="mt-half">
-                                        <view class="d-inline text-bolder text-dark">
-                                            Status: 
-                                        </view>
-                                        <text class="d-inline text-italic">
-                                            <text wx:if="{{ this_order.order_status == 0 }}"
-                                                class="text-red"
-                                                > Expired </text>
-                                            <text wx:if="{{ this_order.order_status == 1 }}"
-                                                class="text-gold"
-                                                > Waiting </text>
-                                            <text wx:if="{{ this_order.order_status == 2 }}"
-                                                class="text-orange"
-                                                > Active </text>
-                                            <text wx:if="{{ this_order.order_status == 3 }}"
-                                                class="text-green"
-                                                > Completed </text>
-                                        </text>
-                                    </view>
-                                    <view class="mt-half">
-                                        <view class="d-inline text-bolder text-dark">
-                                            Mark: 
-                                        </view>
-                                        {{ this_order.order_content }}
-                                    </view>
-                                </view>
-                            </view>
--->
