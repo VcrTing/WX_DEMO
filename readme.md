@@ -37,6 +37,7 @@ last_edit = 2019-5-13 18:37
 <img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Form.png?raw=true" width="25%">
 <img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Order%20Finish.png?raw=true" width="25%">
 <img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Order.png?raw=true" width="25%">
+<img src ="https://github.com/VcrTing/WX_DEMO/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/Modal.png?raw=true" width="25%">
 
 <br/>
 

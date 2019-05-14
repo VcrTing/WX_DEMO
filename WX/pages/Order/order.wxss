@@ -109,3 +109,13 @@
     color: #7e7e7e;
 }
 */
+
+.this_order {
+    color: #9e9e9e;
+    height: 46vh;
+    overflow: scroll;
+    margin-bottom: 2vh
+}
+.this_order-item {
+    font-size: 0.8em;
+}

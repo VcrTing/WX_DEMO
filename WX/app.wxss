@@ -281,7 +281,7 @@ view {
 }
 
 /*
-
+Public Ele
 */
 
 .call-action {
@@ -378,39 +378,36 @@ Loading
   width: 750rpx;
   height: 100vh;
 }
-.modal-header {
-  padding-top: 9rpx;
-  height: 10vh;
-  overflow: hidden;
-}
-.modal-content {
-  padding: 8rpx 0;
-  overflow: scroll;
-  height: 73vh;
-}
 .modal-main {
   z-index: 8001;
   width: 750rpx;
-  height: 90vh;
-  margin: 36rpx 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
-.modal-footer {
-  height: 8vh;
-  overflow: hidden;
+.modal-main-inner {
+  width: 678rpx;
+  padding: 36rpx 36rpx;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+.modal-header {
+  font-weight: bolder;
+  font-size: 2em;
+}
+.modal-del {
+  font-size: 4vw;
+  margin-top: 2vw
 }
 .modal-btn {
-  display: block;
+  background: rgb(0, 168, 243);
+  color: white;
   font-weight: bolder;
-  padding: 2vh 36rpx;
-  text-align: center;
-  /*
-  linear-gradient(
-    rgb(0, 168, 243) 0%, 
-    #0070c5 100%
-  );
-  */
+  padding: 1vh 72rpx;
+  float: left;
 }
-
 .show-modal {
   opacity: 1;
   display: block;

@@ -108,14 +108,14 @@ Page({
       var animation = wx.createAnimation({
         timingFunction: "ease",
       })
-      animation.translateY(-1334).step({duration: 1000})
+      animation.translateY(-1334).step({duration: 2000})
       this.setData({modal: animation.export()})
 
       setTimeout(() => {
         this.setData({
           open_modal: false
         })
-      }, 200)
+      }, 400)
     },
 
     /**
