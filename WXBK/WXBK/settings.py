@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 MINE_APPS = [
+    'gunicorn',
     # 'Extra.admin',
     'django_filters',
     'rest_framework',

@@ -11,7 +11,7 @@
                     <text>Order Record</text>
                 </view>
                 <view class="page-right-content">
-                    <navigator url="/pages/Order/add_order/add_order">
+                    <navigator url="/pages_sub/Order/add_order/add_order">
                         <icon class="iconfont iconadd text-main"></icon>
                     </navigator>
                 </view>
@@ -83,17 +83,84 @@
         <view class="modal-wrapper">
             <view class="modal-hui" bindtap="closeModal">
             </view>
-            <view class="modal-main">
-                <view class="modal-main-inner" animation="{{ modal }}" style="border-radius: 9rpx;">
-                    <view class="modal-header">
-                        <view class="d-inline">
+            <view class="modal-main" animation="{{ modal }}">
+                <view class="modal-main-inner bg-white" style="border-radius: 9rpx;">
+                    <view class="empty-30"></view>
+                    <view class="modal-header row-wrapper">
+                        <view class="d-inline text-boom text-bolder">
                             Order
                         </view>
                         <view class="text-main modal-del float-right d-inline" data-id="{{ this_order.id }}" bindtap="del_order">
                             Trash?
                         </view>
                     </view>
-                    <view class="line"></view>
+                    <view class="this_order row-wrapper">
+                        <view class="this_order-item text-bolder text-huge text-dark mt-15">
+                            <view class="d-inline">
+                                <icon class="iconfont iconguanbi text-boom text-red"
+                                    wx:if="{{ this_order.order_status == 0 }}"></icon>
+                                <icon class="iconfont iconshenhe text-boom text-gold"
+                                    wx:if="{{ this_order.order_status == 1 }}"></icon>
+                                <icon class="iconfont icondaishouhuo text-boom text-orange"
+                                    wx:if="{{ this_order.order_status == 2 }}"></icon>
+                                <icon class="iconfont iconyiwancheng text-boom text-green"
+                                    wx:if="{{ this_order.order_status == 3 }}"></icon>
+                            </view>
+                            <view class="d-inline text-big">
+                              {{ this_order.order_number }}
+                            </view>
+                        </view>
+                        <view class="this_order-item text-dark mt-15">
+                            <view class="d-inline">
+                                Date Time: 
+                            </view>
+                            {{ this_order.order_date }} {{ this_order.order_time }}
+                        </view>
+                        <view class="this_order-item">
+                            <view class="d-inline">
+                                Status: 
+                            </view>
+                            <text class="d-inline text-italic text-bolder">
+                                <text wx:if="{{ this_order.order_status == 0 }}"
+                                    class="text-red"
+                                    > Expired </text>
+                                <text wx:if="{{ this_order.order_status == 1 }}"
+                                    class="text-gold"
+                                    > Waiting </text>
+                                <text wx:if="{{ this_order.order_status == 2 }}"
+                                    class="text-orange"
+                                    > Active </text>
+                                <text wx:if="{{ this_order.order_status == 3 }}"
+                                    class="text-green"
+                                    > Completed </text>
+                            </text>
+                        </view>
+                        <view class="this_order-item mt-15">
+                            <view class="d-inline">
+                                Product:
+                            </view> 
+                            {{ this_order.order_title }}
+                        </view>
+                        <view class="this_order-item">
+                            <view class="d-inline">
+                                Mark: 
+                            </view>
+                            {{ this_order.order_content }}
+                        </view>
+                    </view>
+                    <view class="modal-btn def-bg" bindtap="closeModal">
+                        <view class="empty-15"></view>
+                        SURE
+                    </view>
+                    <view class="empty-30 def-bg" bindtap="closeModal"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 
+
                     <view class="this_order">
                         <view class="this_order-item text-bolder text-huge text-dark mt-15">
                             <view class="d-inline">
@@ -148,11 +215,4 @@
                             {{ this_order.order_content }}
                         </view>
                     </view>
-                    <view class="modal-btn" bindtap="closeModal">
-                        SURE
-                    </view>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
+                    -->

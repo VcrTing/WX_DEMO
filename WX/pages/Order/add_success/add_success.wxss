@@ -1,5 +1,0 @@
-/* pages/Order/add_success/add_success.wxss */
-.success-icon {
-  font-size: 180rpx;
-  color: limegreen;
-}

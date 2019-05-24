@@ -45,7 +45,7 @@ class MemberAdmin(admin.ModelAdmin):
     list_filter = ['gender', 'country', 'status']
 
     list_per_page = 50
-    empty_value_display = ADMIN_CONF['empty_value_display']
+    empty_value_display = '(Secrecy)'
 
     def get_ordering(self, request):
         return ['-add_time', ]

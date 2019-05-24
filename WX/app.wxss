@@ -12,6 +12,10 @@ view {
   height: 100vh;
 }
 
+.ele-hide {
+  display: none;
+}
+
 /**app.wxss**/
 .def-container {
   height: 100%;
@@ -23,7 +27,7 @@ view {
 }
 
 .def-bg {
-  background: #f7f7f7;
+  background: #f2f2f2;
 }
 
 .def-title {
@@ -204,6 +208,9 @@ view {
   background: rgb(0, 168, 243);
 }
 
+.empty-15{
+  height: 36rpx
+}
 .empty-30{
   height: 72rpx
 }
@@ -281,8 +288,11 @@ view {
 }
 
 /*
-Public Ele
+
 */
+.top-shadow {
+  box-shadow: 0 -9rpx 9rpx rgba(0, 0, 0, 0.46);
+}
 
 .call-action {
   color: white;
@@ -360,6 +370,7 @@ Loading
   border-bottom: 4rpx solid rgb(0, 168, 243);
 }
 
+/* Modal */
 .modal {
   position: fixed;
   width: 750rpx;
@@ -381,33 +392,49 @@ Loading
 .modal-main {
   z-index: 8001;
   width: 750rpx;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
+  aligin-item: center;
+  margin-top: 5vh;
 }
 .modal-main-inner {
   width: 678rpx;
-  padding: 36rpx 36rpx;
-  background: #ffffff;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aligin-item: center;
 }
 .modal-header {
-  font-weight: bolder;
-  font-size: 2em;
+  padding-top: 9rpx;
+  height: 10vh;
+  overflow: hidden;
 }
 .modal-del {
-  font-size: 4vw;
-  margin-top: 2vw
+  margin-top: 36rpx;
+}
+.modal-content {
+  padding: 8rpx 0;
+  overflow: scroll;
+  height: 73vh;
+}
+.modal-footer {
+  height: 8vh;
+  overflow: hidden;
 }
 .modal-btn {
-  background: rgb(0, 168, 243);
-  color: white;
+  display: block;
+  margin-top: 36rpx;
   font-weight: bolder;
-  padding: 1vh 72rpx;
-  float: left;
+  text-align: center;
+  /*
+  linear-gradient(
+    rgb(0, 168, 243) 0%, 
+    #0070c5 100%
+  );
+  */
 }
+
 .show-modal {
   opacity: 1;
   display: block;

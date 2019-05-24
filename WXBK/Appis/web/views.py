@@ -27,7 +27,17 @@ class HomeSliderViewSet(viewsets.ModelViewSet):
     ordering_fields = ('id', )
 
 
-# 获取用户 OpenId
+class PageIMGViewSet(viewsets.ModelViewSet):
+    """
+        页面图片
+    """
+    queryset = models.PageIMG.objects.all()
+    serializer_class = serializers.PageIMGSerializer
+    filter_backends = (DjangoFilterBackend, )
+    filter_fields = ('live', )
+
+# Related User
+# https://www.cnblogs.com/jinxiaohang/p/7193505.html
 class OpenIdView(View):
     def get(self, request):
         code = request.GET.get('code', '')
@@ -48,3 +58,13 @@ class OpenIdView(View):
                 'openid': open_id
             }
         })
+
+    def post(self, request):
+        access_token = request.POST.get('access_token', None)
+        openid = request.POST.get('openid', None)
+        langlang = request.POST.get('langlang', None)
+
+        if access_token:
+            url = 'https://api.weixin.qq.com/sns/userinfo?access_token='+ access_token +'&openid='+ openid +'&lang=' + langlang
+
+        return True

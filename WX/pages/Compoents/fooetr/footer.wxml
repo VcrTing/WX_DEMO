@@ -1,6 +1,0 @@
-
-    <view class="row">
-        <view class="row-wrapper footer-copyright">
-            Copyright {{ company_date }} Powered by {{ company_name }} Technology.
-        </view>
-    </view>

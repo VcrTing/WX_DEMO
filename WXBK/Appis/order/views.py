@@ -21,7 +21,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderSerializer
     filter_backends = (DjangoFilterBackend, )
-    filter_fields = ('member', 'status')
+    filter_fields = ('member', 'status', 'order_number')
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     ordering_fields = ('id', )
 

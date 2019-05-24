@@ -1,12 +1,17 @@
 {
   "pages": [
     "pages/Home/home",
-    "pages/Order/order",
-    "pages/Order/add_order/add_order",
-    "pages/Order/add_success/add_success",
-    "pages/User/user",
-    "pages/Posts/posts",
-    "pages/Compoents/fooetr/footer"
+    "pages/Order/order"
+  ],
+  "subPackages": [
+    {
+      "root": "pages_sub",
+      "pages": [
+        "Order/add_order/add_order",
+        "Order/add_success/add_success",
+        "Posts/posts"
+      ]
+    }
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,9 +34,6 @@
         "text": "Order"
       }
     ]
-  },
-  "usingComponents": {
-    "footer": "pages/Compoents/fooetr/footer"
   },
   "sitemapLocation": "sitemap.json",
   "debug": false

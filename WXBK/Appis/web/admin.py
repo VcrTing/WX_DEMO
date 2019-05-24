@@ -41,3 +41,37 @@ class HomeSliderAdmin(admin.ModelAdmin):
 
     def get_ordering(self, request):
         return ['id', ]
+
+@admin.register(models.PageIMG)
+class PageIMGAdmin(admin.ModelAdmin):
+
+    image = djmodel.ImageField()
+    def image(self, obj):
+        return mark_safe('<img src="%s" width="170px" style="border-radius: 5px;"/>' % (obj.img.url,))
+    image.allow_tags = True
+    image.short_description = '缩略图'
+    
+    list_display = ['image', 'img', 'live', 'mark', 'add_time']
+    exclude = ['flag']
+    readonly_fields = ['image']
+    fieldsets = (
+        ("内容", {
+            "fields": (
+                'image', 'img', 'live', 'mark'
+            ),
+        }),
+        ("其他", {
+            "fields": (
+                'add_time',
+            ),
+        }),
+    )
+    list_per_page = 50
+    empty_value_display = ADMIN_CONF['empty_value_display']
+    """
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+    """

@@ -1,18 +1,15 @@
 
 let show_tool = false
 let flag = true
+
 const serverErrorImg = '/lib/imgs/usefull/serverError.png'
 const serverErrorImg_16x9 = '/lib/imgs/usefull/serverError_16x9.png'
 const emptyData_16x9 = '/lib/imgs/usefull/emptyData_16x9.png'
 const emptyData_3x4 = '/lib/imgs/usefull/emptyData_3x4.png'
 
-//获取应用实例
 const app = getApp()
 
 Page({
-    /**
-     * 页面的初始数据
-     */
     data: {
       userInfo: {},
       hasUserInfo: false,
@@ -20,32 +17,32 @@ Page({
 
       home_slider: [ ],
       blog: [ ],
-      service_bg: "/lib/imgs/new/service - bg.png",
+      activity_bg: `${app.globalData.media.img.home.activity}`,
       product_list: [
         {
           id: 1,
           name: "Product Name",
           description: "Attract as much attention as possible.",
-          image: "/lib/imgs/new/product - 1.png",
+          image: `${app.globalData.media.img.home.product_1}`,
           status: 1
         },
         {
           id: 2,
           name: "Product Name",
           description: "Attract as much attention as possible.",
-          image: "/lib/imgs/new/product - 2.png",
+          image: `${app.globalData.media.img.home.product_2}`,
           status: 1
         },
         {
           id: 3,
           name: "Product Name",
           description: "Attract as much attention as possible.",
-          image: "/lib/imgs/new/product - 3.png",
+          image: `${app.globalData.media.img.home.product_3}`,
           status: 1
         }
       ],
-      about_bg: '/lib/imgs/new/about - bg.png',
-      about_img: '/lib/imgs/new/about - img.png',
+      about_bg: `${app.globalData.media.img.home.about_us_detail}`,
+      about_img: `${app.globalData.media.img.home.about_us}`,
 
       point_top: "top",
       point_show: "block",
@@ -66,19 +63,14 @@ Page({
       }
     },
   
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
       
-      // 首页轮播图
       const slider_list = []
       let url = `${app.globalData.api.HOME_SLIDER}?status=true`
       
       wx.request({
         url: url,
         success: (res) => {
-          const code = res.statusCode
           const data = res.data
           if (data.length >= 1) {
             for (const i in data) {
@@ -98,13 +90,10 @@ Page({
         }
       })
 
-      // 博客
       url = `${app.globalData.api.BLOG}?status=true&ordering=-add_time&limit=2&offset=0`
-      
       wx.request({
         url: url,
         success: (res) => {
-          const code = res.statusCode
           const data = res.data.results
           if (data.length >= 1) {
             this.setData({
@@ -138,13 +127,6 @@ Page({
       })
       // onLoad
     },
-  
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-      
-    },
     upd_member: function(userInfo, url) {
       let gender = '';
       (userInfo.gender == 1) ? gender='male' : gender='female';
@@ -163,79 +145,20 @@ Page({
           success: (res) => {
             const code = res.statusCode
             if (code != 200) {
-              console.log('用户信息更新失败！！！')
             }
           },
           fail: (res) => {
-            console.log('服务器错误，本次用户信息更新失败！！！')
           }
         })
       } catch(err) {
-        console.log('服务器错误，本次用户信息存储失败！！！')
       }
     },
-  
-    /**
-     * 生命周期函数--监听页面`  显示
-     */
-    onShow: function () {
-
-    },
-  
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-  
-    },
-  
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-  
-    },
-  
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-  
-    },
-  
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-  
-    },
-  
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-  
-    },
-  
-    /**
-     * 退出登录
-     */
-    logOut: function () {
-  
-    },
-
-    /**
-     * 打电话
-     */
     callPhone: function(e) {
       wx.makePhoneCall({
         phoneNumber: this.data.contact_us.tel,
       })
     },
 
-    /**
-     * 去博客界面
-     */
     goActivity: function(e) {
       const id = e.currentTarget.dataset.id;
       if (id) {
@@ -252,44 +175,12 @@ Page({
         })
       }
     },
-
-    /**
-     * 锚点
-     */
     scrollTop: function(e) {
       wx.pageScrollTo({
         scrollTop: 0,
         duration: 300
       })
     },
-    /*
-    scrollTop: function(e) {
-      let target = e.currentTarget.dataset.opt;
-      this.setData({
-        point_top: target
-      });
-      this.setData({
-        point_show: "none"
-      });
-      flag = true;
-    },
-    scorllListen: function(e) {
-      if ((flag) && (e.detail.scrollTop > 296)) {
-        this.setData({
-          point_show: "block"
-        });
-        flag = false;
-      }
-    }
-    */
-    on_userInfo: function(e) {
-      console.log(e.detail.errMsg)
-      console.log(e.detail.userInfo)
-      console.log(e.detail.rawData)
-    },
-    /**
-     * 地图
-     */
     regionchange: function(e) {
       
     }

@@ -1,0 +1,157 @@
+<view class="container">
+    <view class="page-header">
+        <view class="header-img">
+            <image class="img-res" src="{{ page_bg }}" mode="aspectFill"/>
+        </view>
+        <view class="header-hui">
+        
+        </view>
+        <view class="header-content">
+            <text class="page-title text-white">Make An Appointment</text>
+        </view>
+    </view>
+    <view class="post-content">
+        <view class="row">
+            <view class="row-wrapper">
+                <view class="def-header flex text-center">
+                    <text class="def-title">You can add a Title here.</text>
+                    <text class="def-sub">Here's some text to convey the message.There's no limit to the number of words.</text>
+                </view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="row-wrapper">
+                <view class="form-wrapper">
+                    <form class="def-form">
+                        <view class="form-group">
+                            <text>Name: </text>
+                            <view class="form-ele">
+                                <input placeholder="name" auto-focus bindinput="formName"/>
+                                <view class="form-section"></view>
+                            </view>
+                        </view>
+                        <view class="form-group">
+                            <text>Email: </text>
+                            <view class="form-ele">
+                                <input placeholder="email" bindinput="formEmail"/>
+                                <view class="form-section"></view>
+                            </view>
+                        </view>
+                        <view class="form-group">
+                            <text>Sex: </text>
+                            <view class="form-ele">
+                                <radio-group class="radio-group" bindchange="formGender">
+                                    <label class="radio">
+                                        <radio value="male" checked="male"
+                                        color="rgb(0, 168, 243)"/>
+                                        male
+                                    </label>
+                                    <label class="radio">
+                                        <radio value="female" checked="female" 
+                                        color="rgb(0, 168, 243)"/>
+                                        female
+                                    </label>
+                                </radio-group>
+                            </view>
+                        </view>
+                        <view class="form-group">
+                            <text>Product: </text>
+                            <view class="form-ele">
+                                <picker 
+                                    value="{{ index }}" 
+                                    range="{{ array }}" 
+                                    bindchange="formService"
+                                >
+                                    <view class="picker">
+                                        <view class="picker-value">{{ array[index] }}</view>
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                        <view class="form-group">
+                            <text>Date: </text>
+                            <view class="form-ele">
+                                <picker
+                                    mode="date"
+                                    value="{{ now_date }}"
+                                    bindchange="formDate"
+                                >
+                                    <view class="picker">
+                                        <view class="picker-value">{{ now_date }}</view>
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                        <view class="form-group">
+                            <text>Time: </text>
+                            <view class="form-ele">
+                                <picker
+                                    mode="time"
+                                    value="{{ now_time }}"
+                                    bindchange="formTime"
+                                >
+                                    <view class="picker">
+                                        <view class="picker-value">{{ now_time }}</view>
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                        <view class="form-group">
+                            <text> Mark: </text>
+                            <view class="form-ele">
+                                <textarea placeholder="mark" bindinput="formMark"/>
+                                <view class="form-section"></view>
+                            </view>
+                        </view>
+                        <view class="form-group">
+                            <button class="submit-btn p " hover-class="submit-btn-hover" bindtap="submit">Send</button>
+                        </view>
+                    </form>
+                </view>
+                <view class="empty-30"></view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="row-wrapper-fullwidth bg-main">
+                <view class="call-action">
+                    <view class="def-header flex">
+                        <view class="def-title">
+                            Any Question Call To Us
+                        </view>
+                        <view class="def-sub text-center">
+                            <view class="def-p">
+                                <icon class="iconfont icondianhua"></icon>: {{ contact_us.tel }}
+                            </view>
+                        </view>
+                        <button class="phone-btn p" hover-class="phone-btn-hover" bindtap="callPhone">
+                            Call Now
+                        </button>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="row-wrapper">
+                <view class="def-header flex text-center">
+                    <text class="def-title">You can also use this Map.</text>
+                    <text class="def-sub">Here's some text to convey the message.There's no limit to the number of words.</text>
+                </view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="row-wrapper-fullwidth">
+                <map
+                id="map"
+                longitude="113.324520"
+                latitude="23.099994"
+                scale="14"
+                markers="{{markers}}"
+                bindmarkertap="markertap"
+                bindregionchange="regionchange"
+                show-location
+                style="width: 750rpx; height: 667rpx;"
+                ></map>
+            </view>
+        </view>
+    </view>
+</view>

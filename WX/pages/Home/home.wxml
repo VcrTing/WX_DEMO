@@ -32,7 +32,7 @@
         <view class="row-wrapper-fullwidth">
             <view class="ps-relative blog-dom text-center">
                 <view class="ps-absolute bg-img">
-                    <image src="{{ service_bg }}" class="blog-dom" />
+                    <image src="{{ activity_bg }}" class="blog-dom" />
                 </view>
                 <view class="ps-absolute bg-hui">
                     
@@ -186,11 +186,12 @@
                 </view>
             </view>
             <view class="empty-30"></view>
+            <view class="empty-30"></view>
         </view>
     </view>
 
     <text class="ele-hide">- 电话 -</text>
-    <view class="row">
+    <view class="row-clear">
         <view class="row-wrapper-fullwidth bg-main">
             <view class="call-action">
                 <view class="def-header flex">

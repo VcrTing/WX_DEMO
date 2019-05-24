@@ -42,6 +42,7 @@ router.register('blog', PostsView.BlogViewSet)
 
 # Web
 router.register('home_slider', WebView.HomeSliderViewSet)
+router.register('page_img', WebView.PageIMGViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
