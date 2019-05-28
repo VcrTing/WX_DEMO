@@ -39,32 +39,51 @@ class PageIMGViewSet(viewsets.ModelViewSet):
 # Related User
 # https://www.cnblogs.com/jinxiaohang/p/7193505.html
 class OpenIdView(View):
+    def _req_get(self, url):
+        res = requests.get(url)
+        return eval(res.text)
+
+    def _open_id(self, app_id, app_secret, code):
+        url = 'https://api.weixin.qq.com/sns/jscode2session?appid='+ app_id \
+            +'&secret='+ app_secret \
+            +'&js_code='+ code \
+            +'&grant_type=authorization_code'
+        res = self._req_get(url)
+        return res['openid'], res['session_key']
+
+    def _access_token(self, app_id, app_secret):
+        url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ app_id +'&secret='+ app_secret
+        res = self._req_get(url)
+        return res['access_token']
+    
+    def _user_info(self, access_token, open_id, lang):
+        url = 'https://api.weixin.qq.com/sns/userinfo?access_token='+ access_token \
+            +'&openid='+ open_id \
+            +'&lang=' + lang
+        return requests.get(url).text
+
     def get(self, request):
         code = request.GET.get('code', '')
         app_id = request.GET.get('appId', WX_CONF['APP_ID']) 
         app_secret = request.GET.get('appSecret', WX_CONF['APP_SECRET']) 
-        url = 'https://api.weixin.qq.com/sns/jscode2session?appid='+ app_id +'&secret='+ app_secret +'&js_code='+ code +'&grant_type=authorization_code'
-        res = requests.get(url)
-        res = eval(res.text)
-        session_key = res['session_key']
-        open_id = res['openid']
+        lang = request.GET.get('lang', 'zh_CN')
         
-        # url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ open_id +'&secret=' + app_secret
+        open_id, session_key = self._open_id(app_id, app_secret, code)
+        access_token = self._access_token(app_id, app_secret)
+        # user_info = self._user_info(access_token, open_id, lang)
+        # print('user_info =', user_info)
 
         return JsonResponse({
             'status': True,
             'res': {
+                'access_token': access_token,
                 'session_key': session_key,
-                'openid': open_id
+                'openid': open_id,
+                'user_info': "str(user_info)"
             }
         })
 
     def post(self, request):
-        access_token = request.POST.get('access_token', None)
-        openid = request.POST.get('openid', None)
-        langlang = request.POST.get('langlang', None)
-
-        if access_token:
-            url = 'https://api.weixin.qq.com/sns/userinfo?access_token='+ access_token +'&openid='+ openid +'&lang=' + langlang
-
-        return True
+        
+        
+        return ''

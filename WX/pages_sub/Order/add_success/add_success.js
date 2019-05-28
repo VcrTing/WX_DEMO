@@ -16,8 +16,13 @@ Page({
       url: url,
       success: (res) => {
         res = res.data[0]
-        const list = app.read('wx_order')
-        list.splice(0, 0, res)
+        let list = app.read('wx_order')
+        try {
+          list.splice(0, 0, res)
+        } catch (e) {
+          list = []
+          list.push(res)
+        }
         app.save('wx_order', list)
       }
     })

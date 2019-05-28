@@ -407,7 +407,7 @@ Loading
 }
 .modal-header {
   padding-top: 9rpx;
-  height: 10vh;
+  height: 15vh;
   overflow: hidden;
 }
 .modal-del {
@@ -476,4 +476,21 @@ Loading
 }
 .text-green {
   color: green;
+}
+
+/* AUTH */
+.auth {
+  margin-top: 20vh;
+  width: 540rpx;
+  box-shadow: 3rpx 9rpx 36rpx rgba(47, 47, 47, 0.2);
+  border-bottom: 9rpx solid rgb(0, 168, 243);
+  border-radius: 9rpx;
+  height: 430rpx;
+}
+
+.auth-btn {
+  margin-top: 54rpx;
+  font-weight: 900;
+  padding: 18rpx 36rpx;
+  font-size: 1em;
 }

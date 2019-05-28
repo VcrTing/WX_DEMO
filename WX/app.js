@@ -47,10 +47,12 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    console.log('aaaa')
+    
     // 登录
     wx.login({
       success: (res) => {
+        
         try {
 
           wx.request({
@@ -58,77 +60,30 @@ App({
             data: {
               'code': res.code,
               'appId': APP_ID,
-              'appSecret': APP_SECRET
+              'appSecret': APP_SECRET,
+              'lang': 'zh_CN'
             },
             success: (res) => {
               res = res.data.res
               const openid = res.openid
+              const access_token = res.access_token
 
-              try {
-
-                wx.request({
-                  url: api.LOGIN,
-                  method: 'POST',
-                  data: {
-                    'username': openid,
-                    'password': openid
-                  },
-                  success: (res) => {
-                    res = res.data.res
-                    self.globalData.memberId = res.id
-                    const memberId = res.id
-
-                    wx.setStorage({
-                      key: 'memberId',
-                      data: memberId
-                    })
-
-                    wx.getUserInfo({
-                      success: (res) => {
-                        const userInfo = res.userInfo
-                        this.globalData.userInfo = res.userInfo
-                        typeof e == "function" && e(this.globalData.userInfo)
-
-                        let gender = '';
-                        (userInfo.gender == 1) ? gender = 'male' : gender = 'female';
-
-                        const user_data = {
-                          'nickName': userInfo.nickName,
-                          'avatarUrl': userInfo.avatarUrl,
-                          'gender': gender,
-                          'country': userInfo.country,
-                          'province': userInfo.province,
-                          'city': userInfo.city
-                        }
-                        console.log('user:', user_data)
-                        wx.request({
-                          url: `${api.MEMBER}${memberId}/`,
-                          method: 'PUT',
-                          data: {
-                            'nickName': userInfo.nickName,
-                            'avatarUrl': userInfo.avatarUrl,
-                            'gender': gender,
-                            'country': userInfo.country,
-                            'province': userInfo.province,
-                            'city': userInfo.city
-                          },
-                          success: (res) => {
-                            const code = res.statusCode
-                            if (code != 200) {
-                              console.log('用户信息更新失败！！！')
-                            }
-                          },
-                          fail: (res) => {
-                            console.log('服务器错误，本次用户信息更新失败！！！')
-                          }
-                        })
-                      }
-                    })
-                  }
-                })
-              } catch (err) {
-
-              }
+              this.globalData.oid = openid
+              this.globalData.token = access_token
+              
+              // 存储用户到后台
+              wx.request({
+                url: api.LOGIN,
+                method: 'POST',
+                data: {
+                  'username': openid,
+                  'password': openid
+                },
+                success: (res) => {
+                  const id = res.data.res.id
+                  this.globalData.memberId = id
+                }
+              })
             }
           })
         } catch (err) {
@@ -141,8 +96,36 @@ App({
     userInfo: null,
     memberId: null,
     token: null,
+    oid: null,
     api: api,
     media: media
+  }, 
+
+  saveUserInfo(u, memberId) {
+
+    try {
+      
+      const data = {
+        'avatarUrl': u.avatarUrl,
+        'gender': u.gender == 1 ? 'male' : 'female',
+        'nickName': u.nickName,
+        'province': u.province,
+        'country': u.country,
+        'city': u.city
+      }
+      if (memberId) {
+        wx.request({
+          url: api.MEMBER + memberId + '/',
+          method: "PUT",
+          data: data,
+          success: (res) => {
+            console.log("用户信息更新成功！！！")
+          }
+        })
+      }
+    } catch (e) {
+      console.log("更新用户信息失败！！！")
+    }
   },
   save: function(name, value) {
     wx.setStorageSync(name, value)

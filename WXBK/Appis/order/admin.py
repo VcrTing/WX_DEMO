@@ -35,7 +35,7 @@ class OrderAdmin(admin.ModelAdmin):
     )
     
     search_fields = ['order_number', 'order_date', 'order_time']
-    list_filter = ['order_status']
+    list_filter = ['order_status', 'order_title']
     date_hierarchy = 'add_time'
 
     list_per_page = 30
@@ -48,7 +48,7 @@ class OrderBelongAdmin(admin.ModelAdmin):
 
     def name(self, obj):
         return obj.member_msg.name
-    name.short_description = '用户姓名'
+    name.short_description = '姓名'
     def email(self, obj):
         return obj.member_msg.email
     email.short_description = '邮箱'
@@ -77,8 +77,11 @@ class OrderBelongAdmin(admin.ModelAdmin):
     def order_content(self, obj):
         return obj.order.order_content
     order_content.short_description = '备注'
+    def nickName(self, obj):
+        return obj.order.member.nickName
+    nickName.short_description = '微信昵称'
 
-    list_display = ['order_number', 'name', 'order_title', 'order_content', 'email', 'order_status', 'status', 'add_time']
+    list_display = ['order_number', 'nickName', 'name', 'order_title', 'order_content', 'email', 'order_status', 'status', 'add_time']
     list_display_links = ('order_number', )
     fieldsets = (
         ("订单详情", {
@@ -91,13 +94,17 @@ class OrderBelongAdmin(admin.ModelAdmin):
                 'name', 'email'
             ),
         }),
+        ("订单提交者微信资料", {
+            "fields": (
+                'nickName',
+            ),
+        }),
         ("其他", {
             "fields": (
                 'status', 'add_time'
             ),
         }),
     )
-    search_fields = ['order_number', 'email', 'name']
     readonly_fields = list_display
 
     list_per_page = 30

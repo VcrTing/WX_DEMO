@@ -19,7 +19,7 @@ class Order (models.Model):
         订单
     """
     order_number = models.CharField(max_length=50, default=union.order_number, null=True, blank=True, verbose_name='编号')
-    order_title = models.CharField(max_length=50, default='', blank=True, verbose_name='标题')
+    order_title = models.CharField(max_length=50, default='', blank=True, verbose_name='产品')
     order_content = models.CharField(max_length=240, null=True, blank=True, verbose_name='内容')
     order_date = models.CharField(max_length=10, null=True, blank=True, verbose_name='预约日期')
     order_time = models.CharField(max_length=8, null=True, blank=True, verbose_name='预约时间')
@@ -40,6 +40,7 @@ class OrderBelong (models.Model):
     """
         订单
     """
+    member = models.ForeignKey(MemberModels.Member, on_delete=models.CASCADE, null=True, blank=True, verbose_name='创建订单的用户')
     member_msg = models.ForeignKey(MemberModels.MemberMsg, on_delete=models.CASCADE, null=True, blank=True, verbose_name='订单所属用户')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True, verbose_name='订单')
 

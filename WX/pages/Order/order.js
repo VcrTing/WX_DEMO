@@ -9,33 +9,59 @@ Page({
         is_loading: true,
         loading_img: '/lib/imgs/new/loading.gif',
 
-        h: 0,
         modal: '',
         this_order: {},
-        open_modal: false
+        need_auth: false,
+        open_modal: false,
+        allow_loading: false,
+        open_auth_modal: false
     },
 
     onLoad: function (options) {
-      wx.getSystemInfo({
+      
+    },
+  
+    onShow: function () {
+      wx.getUserInfo({
         success: (res) => {
+          this.loading_data()
+        },
+        fail: (res) => {
           this.setData({
-            h: res.screenHeight
+            open_auth_modal: true,
+            need_auth: true
           })
         }
       })
     },
-  
-    onShow: function () {
-      const memberId = wx.getStorageSync('memberId') || undefined
-      if (memberId) {
-        this.loading_data()
-      } else {
-        setTimeout(() => {
-          this.loading_data()
-        }, 1000)
+
+    getAuthorize() { //弹出授权窗函数
+      if (this.data.need_auth) {
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.userInfo']) {
+              wx.getUserInfo({
+                success: (res) => {
+                  const u = res.userInfo
+                  const memberId = app.globalData.memberId
+                  app.globalData.userInfo = u
+                  app.saveUserInfo(u, memberId)
+                  this.loading_data()
+                }
+              });
+              this.setData({
+                open_auth_modal: false
+              })
+            } else {
+              this.setData({
+                open_auth_modal: true
+              })
+            }
+          }
+        })
       }
     },
-  
+    
     saveOrderList: function (list) {
       app.save('wx_order', list)
     },
@@ -131,7 +157,7 @@ Page({
     
     loading_data: function () {
       setTimeout(() => {
-        const memberId = wx.getStorageSync('memberId')
+        const memberId = app.globalData.memberId
         const url = `${app.globalData.api.ORDER}?member=${memberId}&status=true&ordering=-id`
       
         try {

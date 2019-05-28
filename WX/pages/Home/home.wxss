@@ -99,7 +99,7 @@
 }
 .product image {
     width: 100%;
-    box-shadow: 0 9rpx 9rpx 0 rgba(47, 47, 47, 0.2);
+    box-shadow: 0 9rpx 9rpx -3rpx rgba(65, 65, 65, 0.2);
 }
 .product-img {
     padding: 0;

@@ -157,62 +157,23 @@
             </view>
         </view>
     </view>
-</view>
-
-<!-- 
-
-                    <view class="this_order">
-                        <view class="this_order-item text-bolder text-huge text-dark mt-15">
-                            <view class="d-inline">
-                                <icon class="iconfont iconguanbi text-massive text-red"
-                                    wx:if="{{ this_order.order_status == 0 }}"></icon>
-                                <icon class="iconfont iconshenhe text-massive text-gold"
-                                    wx:if="{{ this_order.order_status == 1 }}"></icon>
-                                <icon class="iconfont icondaishouhuo text-massive text-orange"
-                                    wx:if="{{ this_order.order_status == 2 }}"></icon>
-                                <icon class="iconfont iconyiwancheng text-massive text-green"
-                                    wx:if="{{ this_order.order_status == 3 }}"></icon>
-                            </view>
-                            <view class="d-inline text-big">
-                              {{ this_order.order_number }}
-                            </view>
-                        </view>
-                        <view class="this_order-item text-dark mt-15">
-                            <view class="d-inline">
-                                Date Time: 
-                            </view>
-                            {{ this_order.order_date }} {{ this_order.order_time }}
-                        </view>
-                        <view class="this_order-item">
-                            <view class="d-inline">
-                                Status: 
-                            </view>
-                            <text class="d-inline text-italic">
-                                <text wx:if="{{ this_order.order_status == 0 }}"
-                                    class="text-red"
-                                    > Expired </text>
-                                <text wx:if="{{ this_order.order_status == 1 }}"
-                                    class="text-gold"
-                                    > Waiting </text>
-                                <text wx:if="{{ this_order.order_status == 2 }}"
-                                    class="text-orange"
-                                    > Active </text>
-                                <text wx:if="{{ this_order.order_status == 3 }}"
-                                    class="text-green"
-                                    > Completed </text>
-                            </text>
-                        </view>
-                        <view class="this_order-item mt-15">
-                            <view class="d-inline">
-                                Product:
-                            </view> 
-                            {{ this_order.order_title }}
-                        </view>
-                        <view class="this_order-item">
-                            <view class="d-inline">
-                                Mark: 
-                            </view>
-                            {{ this_order.order_content }}
-                        </view>
+    <!-- 用户 信息 -->
+    <view class="modal" wx:if="{{ open_auth_modal }}">
+        <view class="modal-wrapper">
+            <view class="modal-hui">
+            </view>
+            <view class="modal-main">
+                <view class="auth bg-white">
+                    <view class="row-wrapper text-center">
+                        <text class="auth-title">
+                            We need your Nickname and Avatar so that our staff can better serve you.  
+                        </text>
+                        <button class="auth-btn def-bg" open-type="getUserInfo" bindgetuserinfo="getAuthorize">
+                            SURE
+                        </button>
                     </view>
-                    -->
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

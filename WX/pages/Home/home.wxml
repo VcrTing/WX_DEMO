@@ -1,9 +1,10 @@
-<scroll-view class="def-container"
+<!-- scroll-view class="def-container"
     scroll-with-animation="true" 
     scroll-into-view="{{ point_top }}" 
     scroll-y="true"
-    >
+    -->
 
+<view class="def-container">
     <text class="ele-hide">- 工具块 -</text>
     <view id="top"></view>
 
@@ -243,7 +244,27 @@
             ></map>
         </view>
     </view>
+    <!-- 用户 信息 -->
+    <view class="modal" wx:if="{{ open_modal }}">
+        <view class="modal-wrapper">
+            <view class="modal-hui">
+            </view>
+            <view class="modal-main">
+                <view class="auth bg-white">
+                    <view class="row-wrapper text-center">
+                        <text class="auth-title">
+                            We need your Nickname and Avatar so that our staff can better serve you.  
+                        </text>
+                        <button class="auth-btn def-bg" open-type="getUserInfo" bindgetuserinfo="getAuthorize">
+                            SURE
+                        </button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 
     <text class="ele-hide">- 足部 -</text>
     <footer></footer>
-</scroll-view> 
+</view>
+<!--/scroll-view --> 

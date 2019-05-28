@@ -60,11 +60,13 @@ Page({
         tel: '0796-45536',
         latitude: 23.099994,
         longitude: 113.324520
-      }
+      },
+
+      open_modal: false
     },
   
     onLoad: function (options) {
-      
+
       const slider_list = []
       let url = `${app.globalData.api.HOME_SLIDER}?status=true`
       
@@ -125,8 +127,55 @@ Page({
           })
         }
       })
+
+      const access_token = app.globalData.token 
+      const openid = app.globalData.oid
+      
+      url = 'https://api.weixin.qq.com/sns/userinfo'+ 
+        '?access_token='+ access_token +
+        '&openid='+ openid +
+        '&lang=' + 'zh_CN'
+      
       // onLoad
     },
+    onShow: function(e) {
+      wx.getUserInfo({
+        success: (res) => {
+          this.setData({
+            open_modal: false
+          })
+        },
+        fail: (res) => {
+          this.setData({
+            open_modal: true
+          })
+        }
+      })
+    },
+    getAuthorize() { //弹出授权窗函数
+      wx.getSetting({
+        success: (res) => {
+          if (res.authSetting['scope.userInfo']) {
+            wx.getUserInfo({
+              success: (res) => {
+                const u = res.userInfo
+                const memberId = app.globalData.memberId
+                app.globalData.userInfo = u
+                app.saveUserInfo(u, memberId)
+              }
+            });
+            this.setData({
+              open_modal: false
+            })
+          } else {
+            this.setData({
+              open_modal:true
+            })
+          }
+        }
+      })
+    },
+    
     upd_member: function(userInfo, url) {
       let gender = '';
       (userInfo.gender == 1) ? gender='male' : gender='female';
@@ -162,7 +211,7 @@ Page({
     goActivity: function(e) {
       const id = e.currentTarget.dataset.id;
       if (id) {
-        const url = `/pages/Posts/posts?id=${id}`
+        const url = `/pages_sub/Posts/posts?id=${id}`
         wx.navigateTo({
           url: url
         })

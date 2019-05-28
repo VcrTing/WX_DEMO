@@ -55,25 +55,6 @@ class MemberViewSet(viewsets.ModelViewSet):
         res['res'] = user
         return Response(res)
 
-    @list_route(methods = ['get'])
-    def all_users (self, request):
-        try:
-            users = UserSerializer(Users.objects.all(), many = True).data
-            res = {
-                'success': True,
-                'data': users
-            }
-            response = Response(res)
-            response['Access-Control-Expose-Headers'] = 'auth'
-            response['auth'] = token
-            return response
-        except:
-            res = {
-                'success': False,
-                'mess': '请登录'
-            }
-            return Response(res)
-
 class MemberMsgViewSet(viewsets.ModelViewSet):
     """
         微信会员永久真实资料

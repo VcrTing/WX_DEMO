@@ -141,7 +141,8 @@ Page({
                 const member_msg = res.data.res
                 const order_belong_data = {
                   'member_msg': member_msg.id,
-                  'order': order.id
+                  'order': order.id,
+                  'member': app.globalData.memberId
                 }
 
                 wx.request({
